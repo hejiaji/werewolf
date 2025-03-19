@@ -1,0 +1,38 @@
+{
+	"create a http handler": {
+		"scope": "typescript",
+		"prefix": "h#",
+		"body": [
+			"import { Middleware } from \"koa\";",
+			"import $1 from \"../../models/$1Model\";",
+			"",
+			"import {",
+			"  $3,",
+			"  $4,",
+			"} from \"../../../../werewolf-frontend/shared/httpMsg/$2\";",
+			"",
+			"const ${TM_FILENAME/(.*)\\..+$/$1/}: Middleware = async (ctx) => {",
+			"  const req = ctx.request.body as $3;",
+			"",
+			"  const ret: $4 = {",
+			"    status: 200,",
+			"    msg: \"ok\",",
+			"    data: {}",
+			"  };",
+			"",
+			"  ctx.body = ret;",
+			"};",
+			"",
+			"export default ${TM_FILENAME/(.*)\\..+$/$1/};",
+		],
+		"description": "create a http handler"
+	},
+	"debug": {
+		"scope": "typescript",
+		"prefix": "log#",
+		"body": [
+			"// console.log('# ${TM_FILENAME/(.*)\\..+$/$1/}', $1);",
+		],
+		"description": "create a http handler"
+	}
+}
