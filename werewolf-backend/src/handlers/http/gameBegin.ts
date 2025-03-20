@@ -32,7 +32,7 @@ const gameBegin: Middleware = async (ctx) => {
       status: 401,
     });
 
-  if (room.players.find(x => x.character)) {
+  if (room.players.find(x => x.character === undefined)) {
     createError({
       msg: "玩家还未分配角色",
       status: 401,
