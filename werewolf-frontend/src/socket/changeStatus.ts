@@ -19,7 +19,7 @@ export default async function changeStatus(msg: ChangeStatusMsg) {
     msg.setStatus === GameStatus.WOLF_KILL &&
     self.value.character === "WEREWOLF"
   ) {
-    getWolfsNShow();
+    // getWolfsNShow();
   } else if (
     msg.setStatus === GameStatus.WITCH_ACT &&
     self.value.character === "WITCH"

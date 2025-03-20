@@ -22,10 +22,11 @@ export const self = ref<PlayerDef>({
   sheriffVotes: [],
   canBeVoted: false,
   isDying: false,
+  isCreator: false,
 });
 /** 自己的角色 */
 export const character = computed(() =>
-  self.value ? self.value.character : ""
+  self.value && self.value.character || ""
 );
 /** 天数 */
 export const date = ref<day>(-1);

@@ -32,11 +32,11 @@
         :class="{ active: canAct }"
         content="显示操作"
       ></Btn>
-      <Btn
-        :disabled="isActing"
-        @click="showMemo = true"
-        content="备忘速记"
-      ></Btn>
+<!--      <Btn-->
+<!--        :disabled="isActing"-->
+<!--        @click="showMemo = true"-->
+<!--        content="备忘速记"-->
+<!--      ></Btn>-->
       <Btn
         :disabled="isActing"
         @click="showEvents = true"

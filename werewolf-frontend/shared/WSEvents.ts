@@ -2,6 +2,7 @@ export enum Events {
   /** 房间相关 */
   ROOM_EXILE = "ROOM_EXILE", // 踢出房间
   ROOM_JOIN = "ROOM_JOIN", // 有人加入房间
+  ROLE_ASSIGN = "ROLE_ASSIGN",
   GAME_BEGIN = "GAME_BEGIN", // 开始游戏
   GAME_END = "GAME_END", // 结束游戏
   SEAT_CHANGE = "SEAT_CHANGE",

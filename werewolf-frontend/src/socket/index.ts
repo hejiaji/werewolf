@@ -9,6 +9,7 @@ import gameBegin from "./gameBegin";
 import gameEnd from "./gameEnd";
 import refreshPlayersInfo from "./refreshPlayersInfo";
 import showWSMsg from "./showWSMsg";
+import refreshGameStatus from "./refresh";
 
 let socket: SocketIOClient.Socket;
 
@@ -26,6 +27,7 @@ function joinRoom(roomNumber: string) {
   });
 
   socket.on(Events.CHANGE_STATUS, changeStatus);
+  socket.on(Events.ROLE_ASSIGN, refreshGameStatus)
   socket.on(Events.GAME_BEGIN, gameBegin);
   socket.on(Events.GAME_END, gameEnd);
   socket.on(Events.ROOM_JOIN, refreshPlayersInfo);

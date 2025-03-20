@@ -52,6 +52,15 @@ export async function changeSeat(
   return res as ChangeSeatResponse;
 }
 
+export async function gameRoleAssign(): Promise<boolean> {
+  const res = await request({
+    url: "/game/assignRole",
+    method: "POST",
+  });
+
+  return res.status === 200;
+}
+
 export async function gameBegin(): Promise<boolean> {
   const res = await request({
     url: "/game/begin",

@@ -15,12 +15,12 @@ import { needingCharacters, players } from "./game";
 export const characters = reactive<
   Record<SetableCharacters, number>
 >({
-  GUARD: 1,
-  HUNTER: 1,
+  GUARD: 0,
+  HUNTER: 0,
   SEER: 1,
-  VILLAGER: 2,
-  WEREWOLF: 3,
-  WITCH: 1,
+  VILLAGER: 0,
+  WEREWOLF: 1,
+  WITCH: 0,
 });
 
 /**

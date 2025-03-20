@@ -11,7 +11,7 @@
 <script lang="ts">
   import { defineComponent, computed } from "vue";
 
-  import { character } from "../reactivity/game";
+  import { character, self } from "../reactivity/game";
   import { showCharacter } from "../reactivity/playPage";
   import { ChineseNames, CharacterIntro } from "../../shared/GameDefs";
 

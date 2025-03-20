@@ -32,53 +32,14 @@ const gameBegin: Middleware = async (ctx) => {
       status: 401,
     });
 
-  // console.log("#game being");
-  // assign characters
-  const needingCharacters = [...room.needingCharacters];
-
-  for (let p of room.players) {
-    const index = Math.floor(
-      Math.random() * needingCharacters.length
-    );
-    const character = needingCharacters.splice(index, 1)[0];
-
-    p.character = character;
-    switch (character) {
-      case "GUARD":
-        p.characterStatus = {
-          protects: [],
-        };
-        break;
-      case "HUNTER":
-        p.characterStatus = {
-          shootAt: {
-            day: -1,
-            player: -1,
-          },
-        };
-        break;
-      case "SEER":
-        p.characterStatus = {
-          checks: [],
-        };
-        break;
-      case "WEREWOLF":
-        p.characterStatus = {
-          wantToKills: [],
-        };
-        break;
-      case "WITCH":
-        p.characterStatus = {
-          POISON: { usedDay: -1, usedAt: -1 },
-          MEDICINE: { usedDay: -1, usedAt: -1 },
-        };
-        break;
-      case "VILLAGER":
-        p.characterStatus = {};
-      default:
-        break;
-    }
+  if (room.players.find(x => x.character)) {
+    createError({
+      msg: "玩家还未分配角色",
+      status: 401,
+    });
   }
+
+  // console.log("#game being");
   io.to(roomNumber).emit(Events.GAME_BEGIN);
 
   // console.log("# roomJoin", "start");

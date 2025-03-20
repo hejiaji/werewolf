@@ -11,6 +11,8 @@ export class Player implements PlayerDef {
   sheriffVotes: index[] = [];
   isAlive = true;
   isSheriff = false;
+  isCreator = false;
+
   die?: {
     at: day;
     fromIndex: index[];
@@ -23,7 +25,7 @@ export class Player implements PlayerDef {
   name: string;
   _id: ID;
 
-  constructor({ name, index }: { name: string; index?: number }) {
+  constructor({ name, index }: { name: string; index?: number; }) {
     this.name = name;
     this.index = index;
 
@@ -46,6 +48,7 @@ export class Player implements PlayerDef {
       isDying: this === room.curDyingPlayer,
       hasVotedAt: this.hasVotedAt,
       sheriffVotes: this.sheriffVotes,
+      isCreator: this._id === room.creatorID,
     };
   }
 }
