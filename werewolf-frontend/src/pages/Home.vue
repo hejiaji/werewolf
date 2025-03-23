@@ -6,7 +6,7 @@
       class="logo"
     />
 
-    <div class="title">狼人杀</div>
+    <div class="title">JJ狼人杀</div>
     <Btn
       @click="$router.push('joinRoom')"
       content="加入房间"

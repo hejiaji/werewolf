@@ -10,6 +10,7 @@ import { Character, GameStatus } from "../../../shared/GameDefs";
 import { gameStatus, players, self } from "../../reactivity/game";
 import { potion } from "../../reactivity/playAction";
 import ActionBtn from "./ActionBtn.vue";
+import { witchGetDieNShow } from "../../http/gameGetHint";
 
 const actionInfoList: {
   content: string;
@@ -17,6 +18,7 @@ const actionInfoList: {
   disabled: () => boolean;
   noTarget?: boolean;
   onClick?: Function;
+  hideActionButton? : boolean;
 }[] = [
   // {
   //   content: "票选狼人",
@@ -43,6 +45,13 @@ const actionInfoList: {
     content: "查验身份",
     isShown: () => self.value.character === "SEER",
     disabled: () => gameStatus.value !== GameStatus.SEER_CHECK,
+  },
+  {
+    content: "当晚死亡情况",
+    isShown: () => self.value.character === "WITCH",
+    disabled: () => gameStatus.value !== GameStatus.WITCH_ACT,
+    hideActionButton: true,
+    onClick: () => witchGetDieNShow(),
   },
   {
     content: "使用毒药",
@@ -120,5 +129,6 @@ export const renderActionList = () =>
       content: obj.content,
       noTarget: obj.noTarget,
       onClick: obj.onClick,
+      hideActionButton: !!obj.hideActionButton,
     });
   });

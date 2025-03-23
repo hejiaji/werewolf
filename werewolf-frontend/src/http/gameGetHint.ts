@@ -30,7 +30,7 @@ export async function witchGetDieNShow(): Promise<boolean> {
 
   if (!res || res.status !== 200) return false;
 
-  showDialog(res.data);
+  showDialog(res.data, 10);
 
   return true;
 }

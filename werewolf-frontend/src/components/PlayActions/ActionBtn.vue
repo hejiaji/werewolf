@@ -3,8 +3,12 @@
     :disabled="disabled"
     :onClick="
       () => {
-        onClick ? onClick() : void 0;
-        disabled ? null : commonAction(noTarget);
+        if (onClick) {
+          onClick();
+        }
+        if (!disabled && !hideActionButton) {
+          commonAction({ no_target: noTarget })
+        }
       }
     "
   ></Btn>
@@ -34,9 +38,13 @@
         type: Function,
         required: false,
       },
+      hideActionButton: {
+        type: Boolean,
+        required: false,
+      }
     },
     setup(props) {
-      return { commonAction };
+      return { commonAction, hideActionButton: props.hideActionButton };
     },
   });
 

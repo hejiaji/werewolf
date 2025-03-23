@@ -1,6 +1,5 @@
 import { Character, GameStatus, TIMEOUT } from "../../shared/GameDefs";
 import { ChangeStatusMsg } from "../../shared/WSMsg/ChangeStatus";
-import { getWolfKillResNShow, getWolfsNShow, witchGetDieNShow } from "../http/gameGetHint";
 import { getGameStatus } from "../http/gameStatus";
 import { date, gameStatus, gameStatusTimeLeft, refresh, self } from "../reactivity/game";
 
@@ -24,6 +23,6 @@ export default async function changeStatus(msg: ChangeStatusMsg) {
     msg.setStatus === GameStatus.WITCH_ACT &&
     self.value.character === "WITCH"
   ) {
-    witchGetDieNShow();
+    // witchGetDieNShow();
   }
 }
