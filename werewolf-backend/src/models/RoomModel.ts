@@ -6,7 +6,6 @@ import {
   day,
   ID,
   index,
-  PlayerDef,
   PublicPlayerDef,
   RoomDef,
 } from "../../../werewolf-frontend/shared/ModelDefs";
