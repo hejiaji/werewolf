@@ -14,9 +14,11 @@
 
     <div class="game-status">{{ gameStatus }}</div>
     <div class="game-status">
-      剩余时间:
       {{
-        gameStatusTimeLeft < 0 ? "---" : gameStatusTimeLeft + "S"
+        gameStatusTimeLeft < 0 ? "请开始你的表演" : "剩余时间:"
+      }}
+      {{
+        gameStatusTimeLeft < 0 ? "" : gameStatusTimeLeft + "S"
       }}
     </div>
 
