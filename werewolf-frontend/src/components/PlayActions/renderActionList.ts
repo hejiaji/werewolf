@@ -1,16 +1,10 @@
-import {
-  ComponentOptions,
-  ComputedRef,
-  h,
-  vShow,
-  withDirectives,
-} from "vue";
+import { h, } from "vue";
 
-import { Character, GameStatus } from "../../../shared/GameDefs";
-import { gameStatus, players, self } from "../../reactivity/game";
+import { GameStatus } from "../../../shared/GameDefs";
+import { gameStatus, self } from "../../reactivity/game";
 import { potion } from "../../reactivity/playAction";
 import ActionBtn from "./ActionBtn.vue";
-import { witchGetDieNShow } from "../../http/gameGetHint";
+import { getFirstNightResult, witchGetDieNShow } from "../../http/gameGetHint";
 
 const actionInfoList: {
   content: string;
@@ -36,6 +30,13 @@ const actionInfoList: {
   //   disabled: () => gameStatus.value !== GameStatus.SHERIFF_ELECT,
   //   noTarget: true,
   // },
+  {
+    content: "昨夜信息",
+    isShown: () => self.value.isCreator === true && gameStatus.value === GameStatus.SHERIFF_ELECT,
+    disabled: () => false,
+    hideActionButton: true,
+    onClick: () => getFirstNightResult(),
+  },
   {
     content: "狼人杀人",
     isShown: () => self.value.character === "WEREWOLF",
@@ -84,6 +85,13 @@ const actionInfoList: {
     content: "挠挠痒",
     isShown: () => true,
     disabled: () => false,
+  },
+  {
+    content: "重新游戏",
+    isShown: () => self.value.isCreator === true,
+    disabled: () => false,
+    noTarget: true,
+    onClick: () => {}
   }
   // {
   //   content: "结束发言",

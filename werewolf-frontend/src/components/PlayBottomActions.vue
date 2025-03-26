@@ -10,7 +10,7 @@
         <span>{{ noTarget ? "是否确认" : "选择目标" }}</span>
       </div>
       <div>
-        <small :style="{ opacity: 0.6 }">不选即为放弃</small>
+        <small :style="{ opacity: 0.6 }">{{ noTarget ? "该操作无法撤回" : "不选即为放弃"}}</small>
       </div>
     </div>
     <img

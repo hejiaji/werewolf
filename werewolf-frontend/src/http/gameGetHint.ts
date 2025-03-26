@@ -34,3 +34,16 @@ export async function witchGetDieNShow(): Promise<boolean> {
 
   return true;
 }
+
+export async function getFirstNightResult(): Promise<boolean> {
+  const res = await request<string>({
+    url: "/game/hint/getFirstNightResult",
+    method: "GET",
+  });
+
+  if (!res || res.status !== 200) return false;
+
+  showDialog(res.data, 10);
+
+  return true;
+}
