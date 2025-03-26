@@ -5,6 +5,7 @@ export enum Events {
   ROLE_ASSIGN = "ROLE_ASSIGN",
   GAME_BEGIN = "GAME_BEGIN", // 开始游戏
   GAME_END = "GAME_END", // 结束游戏
+  GAME_RESTART = "GAME_RESTART",
   SEAT_CHANGE = "SEAT_CHANGE",
 
   /** 游戏相关 */

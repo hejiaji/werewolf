@@ -5,8 +5,24 @@ import { index } from "../../shared/ModelDefs";
 import { characterAct } from "../http/action";
 import { showDialog } from "./dialog";
 import { gameStatus } from "./game";
+import { gameRestart } from "../http/room";
+
+const resetAct = () => {
+  /* reset */
+  isActing.value = false;
+  potion.value = undefined;
+  target.value = 0;
+  noTarget.value = false;
+  shouldRestart.value = false;
+}
 
 export async function act() {
+  if (!!shouldRestart.value) {
+    resetAct();
+    await gameRestart();
+    return;
+  }
+
   if (
     potion.value === "POISON" &&
     gameStatus.value === GameStatus.WITCH_ACT
@@ -33,15 +49,14 @@ export async function act() {
     }
   }
   /* reset */
-  potion.value = undefined;
-  target.value = 0;
-  noTarget.value = false;
+  resetAct();
 }
 
 export const isActing = ref(false);
 export const noTarget = ref(false);
 export const target = ref<index>(0);
 export const potion = ref<Potion>();
+export const shouldRestart = ref(false);
 
 export function setTarget(index: index) {
   if (!isActing.value) return;

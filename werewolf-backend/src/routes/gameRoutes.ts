@@ -5,6 +5,7 @@ import gameBegin from "../handlers/http/gameBegin";
 import hintResultRouter from "../handlers/http/gameGetHint";
 import gameStatus from "../handlers/http/gameStatus";
 import gameRoleAssign from "../handlers/http/gameRoleAssign";
+import gameRestart from "../handlers/http/gameRestart";
 
 const gameRouter = new Router();
 
@@ -12,6 +13,7 @@ gameRouter.post("game begin", "/begin", gameBegin); // 进行角色的操作相�
 gameRouter.post("game status", "/status", gameStatus); // 查看游戏状态相关 api
 gameRouter.post("game act", "/act", gameAct); // 进行角色的操作相关 api
 gameRouter.post("game role assign", "/assignRole", gameRoleAssign)
+gameRouter.post("game restart", "/restart", gameRestart);
 gameRouter.use(
   "/hint", // 获取提示信息并在前端显示弹窗的 api
   hintResultRouter.routes(),

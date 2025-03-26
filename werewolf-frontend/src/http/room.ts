@@ -69,3 +69,12 @@ export async function gameBegin(): Promise<boolean> {
 
   return res.status === 200;
 }
+
+export async function gameRestart(): Promise<boolean> {
+  const res = await request({
+    url: "/game/restart",
+    method: "POST",
+  });
+
+  return res.status === 200;
+}

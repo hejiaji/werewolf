@@ -2,7 +2,7 @@ import { h, } from "vue";
 
 import { GameStatus } from "../../../shared/GameDefs";
 import { gameStatus, self } from "../../reactivity/game";
-import { potion } from "../../reactivity/playAction";
+import { potion, shouldRestart } from "../../reactivity/playAction";
 import ActionBtn from "./ActionBtn.vue";
 import { getFirstNightResult, witchGetDieNShow } from "../../http/gameGetHint";
 
@@ -38,7 +38,7 @@ const actionInfoList: {
     onClick: () => getFirstNightResult(),
   },
   {
-    content: "狼人杀人",
+    content: "杀人",
     isShown: () => self.value.character === "WEREWOLF",
     disabled: () => gameStatus.value !== GameStatus.WOLF_KILL,
   },
@@ -91,7 +91,7 @@ const actionInfoList: {
     isShown: () => self.value.isCreator === true,
     disabled: () => false,
     noTarget: true,
-    onClick: () => {}
+    onClick: () => { shouldRestart.value = true }
   }
   // {
   //   content: "结束发言",
@@ -120,17 +120,6 @@ const actionInfoList: {
 export const renderActionList = () =>
   actionInfoList.map((obj) => {
     if (!obj.isShown()) return null;
-
-    if (
-      ~["传递警徽", "猎人开枪", "结束发言"].indexOf(obj.content)
-    ) {
-      return h(ActionBtn, {
-        disabled: obj.disabled(),
-        content: obj.content,
-        noTarget: obj.noTarget,
-        onClick: obj.onClick,
-      });
-    }
 
     return h(ActionBtn, {
       disabled: obj.disabled() || !self.value.isAlive,

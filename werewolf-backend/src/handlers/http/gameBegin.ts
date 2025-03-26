@@ -20,6 +20,7 @@ const gameBegin: Middleware = async (ctx) => {
   const playerID = ctx.get(IDHeaderName);
 
   const room = Room.getRoom(roomNumber);
+
   if (room.creatorID !== playerID)
     createError({
       msg: "只有房主才能开始游戏",

@@ -122,6 +122,19 @@ export class Room implements RoomDef {
     return !player;
   }
 
+  reset() {
+    this.currentDay = -1;
+    this.isFinished = false;
+    this.gameStatus = [GameStatus.WOLF_KILL];
+    this.toFinishPlayers = new Set<index>();
+    this.nextStateOfDieCheck = undefined;
+    this.curDyingPlayer = undefined;
+
+    for (let i = 0; i < this.players.length; i++) {
+      this.players[i].reset();
+    }
+  }
+
   static getRoom(number: string): Room {
     const room = Room.roomMap[number];
     // // console.log("# RoomModel", { room });

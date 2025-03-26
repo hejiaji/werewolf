@@ -35,6 +35,17 @@ export class Player implements PlayerDef {
   isDying: boolean = false; // TODO isDying 的话角色闪烁?
   canBeVoted: boolean = false;
 
+  reset(): void {
+    this.character = undefined;
+    this.hasVotedAt = [];
+    this.sheriffVotes = [];
+    this.isAlive = true;
+    this.isSheriff = false;
+    this.isCreator = false;
+    this.die = undefined;
+    this.characterStatus = {};
+  }
+
   /**
    * 将 Player 信息转换成公开的信息
    * @returns 可公开的信息

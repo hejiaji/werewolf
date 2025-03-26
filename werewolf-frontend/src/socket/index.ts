@@ -6,6 +6,7 @@ import { Events } from "../../shared/WSEvents";
 // handlers
 import changeStatus from "./changeStatus";
 import gameBegin from "./gameBegin";
+import gameRestart from "./gameRestart";
 import gameEnd from "./gameEnd";
 import refreshPlayersInfo from "./refreshPlayersInfo";
 import showWSMsg from "./showWSMsg";
@@ -33,6 +34,7 @@ function joinRoom(roomNumber: string) {
   socket.on(Events.ROOM_JOIN, refreshPlayersInfo);
   socket.on(Events.SEAT_CHANGE, refreshPlayersInfo);
   socket.on(Events.SHOW_MSG, showWSMsg);
+  socket.on(Events.GAME_RESTART, gameRestart)
 
   socket.emit(Events.ROOM_JOIN, roomNumber);
 }
