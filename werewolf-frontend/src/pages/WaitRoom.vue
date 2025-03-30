@@ -50,6 +50,7 @@
   import { showCharacter } from "../reactivity/playPage";
   import { gameBegin, initRoom, gameRoleAssign } from "../http/room";
   import Character from "../components/PlayCharacter.vue";
+  import { loadAudio } from "../reactivity/audio";
 
   const WaitRoom = defineComponent({
     name: "WaitRoom",
@@ -61,6 +62,7 @@
     setup(props) {
       const { pw, number } = toRefs(props);
       onMounted(async () => {
+        loadAudio();
         const res = await initRoom({ roomNumber: number.value });
         if (res && res.status === 200) {
           players.value = res.data.players;

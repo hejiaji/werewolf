@@ -94,6 +94,7 @@
   import { showDialog } from "../reactivity/dialog";
   import router from "../router";
   import { roomNumber } from "../reactivity/joinRoom";
+  import { play } from "../reactivity/audio";
 
   const Play = defineComponent({
     name: "Play",
@@ -116,6 +117,9 @@
           roomNumber.value = token.roomNumber;
           joinRoom(token.roomNumber);
           refresh();
+        }
+        if (self.value.isCreator) {
+          play();
         }
       });
       onActivated(refresh);

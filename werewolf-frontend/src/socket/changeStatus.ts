@@ -1,7 +1,7 @@
-import { Character, GameStatus, TIMEOUT } from "../../shared/GameDefs";
+import { GameStatus, TIMEOUT } from "../../shared/GameDefs";
 import { ChangeStatusMsg } from "../../shared/WSMsg/ChangeStatus";
-import { getGameStatus } from "../http/gameStatus";
 import { date, gameStatus, gameStatusTimeLeft, refresh, self } from "../reactivity/game";
+import { stopBGAudio } from "../reactivity/audio";
 
 /*  */
 
@@ -13,6 +13,11 @@ export default async function changeStatus(msg: ChangeStatusMsg) {
   gameStatusTimeLeft.value = msg.timeout || TIMEOUT[msg.setStatus];
 
   await refresh();
+
+  console.log("---", msg.setStatus);
+  if (msg.setStatus === GameStatus.SHERIFF_ELECT) {
+    stopBGAudio();
+  }
 
   if (
     msg.setStatus === GameStatus.WOLF_KILL &&
