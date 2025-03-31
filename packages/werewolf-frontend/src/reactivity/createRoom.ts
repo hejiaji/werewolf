@@ -21,6 +21,7 @@ export const characters = reactive<
   VILLAGER: 0,
   WEREWOLF: 1,
   WITCH: 0,
+  Idiot: 0,
 });
 
 /**

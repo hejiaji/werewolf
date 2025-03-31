@@ -1,7 +1,6 @@
 <template>
   <div class="createroom">
     <span class="title">角色设置</span>
-    <!-- TODO 警长, 屠边屠城 -->
     <div class="tile-wrapper">
       <room-character-tile
         :key="value"
@@ -82,7 +81,7 @@
       display: flex;
       flex-wrap: wrap;
       .room-character-tile {
-        flex: 1 1 33%;
+        flex: 0 0 33%;
         padding: 1rem 0;
       }
     }
