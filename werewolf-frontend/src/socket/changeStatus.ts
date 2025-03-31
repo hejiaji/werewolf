@@ -1,7 +1,7 @@
 import { GameStatus, TIMEOUT } from "../../shared/GameDefs";
 import { ChangeStatusMsg } from "../../shared/WSMsg/ChangeStatus";
 import { date, gameStatus, gameStatusTimeLeft, refresh, self } from "../reactivity/game";
-import { stopBGAudio } from "../reactivity/audio";
+import { AUDIO_CATEGORY, playAudio, stopBGAudio } from "../reactivity/audio";
 
 /*  */
 
@@ -14,20 +14,31 @@ export default async function changeStatus(msg: ChangeStatusMsg) {
 
   await refresh();
 
-  console.log("---", msg.setStatus);
   if (msg.setStatus === GameStatus.SHERIFF_ELECT) {
     stopBGAudio();
   }
 
+  if (!self.value.isCreator) {
+    return;
+  }
+
   if (
-    msg.setStatus === GameStatus.WOLF_KILL &&
-    self.value.character === "WEREWOLF"
+    msg.setStatus === GameStatus.WOLF_KILL
   ) {
-    // getWolfsNShow();
+    playAudio(AUDIO_CATEGORY.WOLF);
   } else if (
-    msg.setStatus === GameStatus.WITCH_ACT &&
-    self.value.character === "WITCH"
+    msg.setStatus === GameStatus.SEER_CHECK
   ) {
-    // witchGetDieNShow();
+    playAudio(AUDIO_CATEGORY.SEER);
+  } else if (
+    msg.setStatus === GameStatus.WITCH_ACT
+  ) {
+    playAudio(AUDIO_CATEGORY.WIZARD);
+  } else if (
+    msg.setStatus === GameStatus.HUNTER_CHECK
+  ) {
+    playAudio(AUDIO_CATEGORY.HUNTER);
+  } else if (msg.setStatus === GameStatus.SHERIFF_ELECT) {
+    playAudio(AUDIO_CATEGORY.ENDING);
   }
 }

@@ -94,7 +94,7 @@
   import { showDialog } from "../reactivity/dialog";
   import router from "../router";
   import { roomNumber } from "../reactivity/joinRoom";
-  import { play } from "../reactivity/audio";
+  import { AUDIO_CATEGORY, playAudio } from "../reactivity/audio";
 
   const Play = defineComponent({
     name: "Play",
@@ -119,7 +119,7 @@
           refresh();
         }
         if (self.value.isCreator) {
-          play();
+          playAudio(AUDIO_CATEGORY.BG);
         }
       });
       onActivated(refresh);
