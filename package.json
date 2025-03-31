@@ -1,0 +1,14 @@
+{
+  "name": "werewolf-monorepo",
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build:package-a && npm run build:package-b",
+    "build:backend": "cd packages/werewolf-backend && npm run build",
+    "build:frontend": "cd packages/werewolf-frontend && npm run build",
+    "dev:frontend": "npm run dev --workspace=@werewolf/frontend",
+    "dev:backend": "npm run dev --workspace=@werewolf/backend"
+  }
+}
