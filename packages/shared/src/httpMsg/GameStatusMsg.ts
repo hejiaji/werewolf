@@ -1,7 +1,5 @@
-import { Vote } from "../../src/utils/votes";
-import { Character, GameStatus } from "../GameDefs";
-import { day, GameEvent, index, PlayerDef, PublicPlayerDef } from "../ModelDefs";
-import { HttpRes } from "./_httpResTemplate";
+import { GameStatus } from "../GameDefs";
+import { day, PlayerDef, PublicPlayerDef } from "../ModelDefs";
 
 export interface GameStatusRequest {}
 

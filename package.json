@@ -9,6 +9,7 @@
     "build:backend": "cd packages/werewolf-backend && npm run build",
     "build:frontend": "cd packages/werewolf-frontend && npm run build",
     "dev:frontend": "npm run dev --workspace=@werewolf/frontend",
-    "dev:backend": "npm run dev --workspace=@werewolf/backend"
+    "dev:backend": "npm run dev --workspace=@werewolf/backend",
+    "start:backend": "npm run start --workspace=@werewolf/backend"
   }
 }
