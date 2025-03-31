@@ -6,20 +6,18 @@
   "scripts": {
     "dev": "nodemon",
     "build": "rm -rf dist && tsc",
-    "start": "ts-node -r tsconfig-paths/register src/index.ts",
-    "pro": "npx pm2 start ecosystem.config.js --env production -o /var/www/game/werewolf/werewolf-backend/log/pm2.log -e /var/www/game/werewolf/werewolf-backend/log/pm2-err.log",
-    "stop": "npx pm2 stop ecosystem.config.js"
+    "start": "ts-node -r tsconfig-paths/register src/index.ts"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
     "@koa/cors": "^3.1.0",
+    "@werewolf/shared": "0.0.1",
     "koa": "^2.13.1",
     "koa-body": "^4.2.0",
     "koa-logger": "^3.2.1",
     "koa-router": "^10.0.0",
-    "socket.io": "^4.0.0",
-    "@werewolf/shared": "0.0.1"
+    "socket.io": "^4.0.0"
   },
   "devDependencies": {
     "@types/koa": "^2.13.1",

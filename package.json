@@ -1,15 +1,16 @@
 {
   "name": "werewolf-monorepo",
   "type": "module",
+  "private": true,
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
     "build": "npm run build:package-a && npm run build:package-b",
-    "build:backend": "cd packages/werewolf-backend && npm run build",
-    "build:frontend": "cd packages/werewolf-frontend && npm run build",
-    "dev:frontend": "npm run dev --workspace=@werewolf/frontend",
-    "dev:backend": "npm run dev --workspace=@werewolf/backend",
-    "start:backend": "npm run start --workspace=@werewolf/backend"
+    "build:backend": "cd packages/werewolf-backend && yarn build",
+    "build:frontend": "cd packages/werewolf-frontend && yarn build",
+    "dev:frontend": "yarn workspace @werewolf/frontend dev",
+    "dev:backend": "yarn workspace @werewolf/backend dev",
+    "start:backend": "yarn workspace @werewolf/backend start"
   }
 }
