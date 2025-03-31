@@ -33,7 +33,7 @@ app
   .use(logger())
   .use(
     cors({
-      credentials: true,
+      credentials: false,
       origin: "*"
     })
   )
