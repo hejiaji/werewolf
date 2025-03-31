@@ -8,7 +8,7 @@ import roomRouter from "./roomRoutes";
 const router = new Router();
 
 router
-  .all("/test", test)
+  .all("/health", test)
   .use("/room", roomRouter.routes(), roomRouter.allowedMethods())
   .use(
     "/game",
