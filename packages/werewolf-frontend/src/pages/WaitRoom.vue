@@ -36,7 +36,6 @@
     computed,
   } from "vue";
 
-  import { CLIENT_BASE_URL } from "../../shared/constants";
   import RoomPlayerList from "../components/RoomPlayerList.vue";
   import Btn from "../components/Btn.vue";
   import { showDialog } from "../reactivity/dialog";
