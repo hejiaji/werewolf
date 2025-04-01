@@ -15,7 +15,7 @@
         }}</small>
       </div>
     </div>
-    <img @click="act" :src="`/assets/checked${theme}.svg`" alt="checked" />
+    <img @click="act" :src="`./assets/checked${theme}.svg`" alt="checked" />
   </div>
   <div class="play-bottom-action-holder"></div>
 </template>

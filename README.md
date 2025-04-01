@@ -1,7 +1,7 @@
 <div align="center" id="top">
   <img width="100" src="packages/werewolf-frontend/public/wolf.png" alt="Werewolf Logo" />
 
-  <!-- <a href="https://werewolf.netlify.app">Demo</a> -->
+  <a href="https://hejiaji.cn/werewolf/">Demo</a>
 </div>
 
 <h1 align="center">狼人杀大法官</h1>

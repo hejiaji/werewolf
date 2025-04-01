@@ -27,10 +27,10 @@ export default Home;
 </script>
 
 <style lang="scss" scoped>
-//@font-face {
-//  font-family: gete;
-//  src: url("../../public/assets/gete.ttf");
-//}
+@font-face {
+  font-family: gete;
+  src: url("./assets/gete.ttf");
+}
 
 .main-page {
   .logo {
