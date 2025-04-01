@@ -11,6 +11,13 @@
     "build:frontend": "cd packages/werewolf-frontend && yarn build",
     "dev:frontend": "yarn workspace @werewolf/frontend dev",
     "dev:backend": "yarn workspace @werewolf/backend dev",
-    "start:backend": "yarn workspace @werewolf/backend start"
+    "start:backend": "yarn workspace @werewolf/backend start",
+    "format": "prettier --write 'packages/**/*.{js,jsx,ts,tsx,json,css,md}'"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  },
+  "devDependencies": {
+    "prettier": "^3.5.3"
   }
 }

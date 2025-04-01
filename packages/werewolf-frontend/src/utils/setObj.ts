@@ -15,8 +15,8 @@ setObj(editingItem, item)
 */
 
 export function setObj<T>(oldObj: T, newObj: T) {
-  const newObj_ = (newObj as unknown) as Record<string, any>;
-  const oldObj_ = (oldObj as unknown) as Record<string, any>;
+  const newObj_ = newObj as unknown as Record<string, any>;
+  const oldObj_ = oldObj as unknown as Record<string, any>;
 
   const keys = Object.keys(newObj_);
 

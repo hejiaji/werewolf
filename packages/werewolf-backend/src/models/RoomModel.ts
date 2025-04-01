@@ -1,7 +1,4 @@
-import {
-  Character,
-  GameStatus,
-} from "@werewolf/shared";
+import { Character, GameStatus } from "@werewolf/shared";
 import {
   day,
   ID,
@@ -54,8 +51,7 @@ export class Room implements RoomDef {
       const prevRoom = Room.roomMap[roomNumber];
       if (
         prevRoom &&
-        Date.now() - prevRoom.createdAt.getTime() <
-          1000 * 3600 * 24
+        Date.now() - prevRoom.createdAt.getTime() < 1000 * 3600 * 24
       ) {
         continue;
       } else {
@@ -74,7 +70,7 @@ export class Room implements RoomDef {
 
     this.clearSelfTimer = setTimeout(
       () => Room.clearRoom(this.roomNumber),
-      3600 * 1000 * 12
+      3600 * 1000 * 12,
     ); // 12h 后清除此房间
   }
 
@@ -104,14 +100,12 @@ export class Room implements RoomDef {
 
   getPlayerById(id: string): Player {
     const player = this.players.find((p) => p._id === id);
-    if (!player)
-      return createError({ status: 401, msg: "id 错误" });
+    if (!player) return createError({ status: 401, msg: "id 错误" });
     return player;
   }
   getPlayerByIndex(index: index): Player {
     const player = this.players.find((p) => p.index === index);
-    if (!player)
-      return createError({ status: 401, msg: "编号错误" });
+    if (!player) return createError({ status: 401, msg: "编号错误" });
     return player;
   }
 
@@ -136,8 +130,7 @@ export class Room implements RoomDef {
   static getRoom(number: string): Room {
     const room = Room.roomMap[number];
     // // console.log("# RoomModel", { room });
-    if (!room)
-      return createError({ status: 400, msg: "未找到房间号" });
+    if (!room) return createError({ status: 400, msg: "未找到房间号" });
     return room;
   }
 
@@ -146,23 +139,20 @@ export class Room implements RoomDef {
   }
 }
 
-function checkNeedingCharacters(
-  needingCharacters: Character[]
-): boolean {
+function checkNeedingCharacters(needingCharacters: Character[]): boolean {
   if (!needingCharacters.length) return false;
-  const charMap: Partial<Record<
-    Character,
-    number
-  >> = needingCharacters.reduce((map, character) => {
-    map[character] = map[character] || 0;
-    map[character]++;
-    return map;
-  }, {});
+  const charMap: Partial<Record<Character, number>> = needingCharacters.reduce(
+    (map, character) => {
+      map[character] = map[character] || 0;
+      map[character]++;
+      return map;
+    },
+    {},
+  );
 
   if (!charMap.WEREWOLF) return false;
 
-  if (charMap.WEREWOLF > needingCharacters.length / 2)
-    return false;
+  if (charMap.WEREWOLF > needingCharacters.length / 2) return false;
 
   return true;
 }

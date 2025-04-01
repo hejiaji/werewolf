@@ -8,7 +8,11 @@ import { Room } from "../../../models/RoomModel";
 import { getVoteResult } from "../../../utils/getVoteResult";
 import { renderHintNPlayers } from "../../../utils/renderHintNPlayers";
 import {
-    GameActHandler, gotoNextStateAfterHandleDie, Response, startCurrentState, status2Handler
+  GameActHandler,
+  gotoNextStateAfterHandleDie,
+  Response,
+  startCurrentState,
+  status2Handler,
 } from "./";
 import { LeaveMsgHandler } from "./LeaveMsg";
 import { SheriffAssignCheckHandler } from "./SheriffAssignCheck";
@@ -20,7 +24,7 @@ export const SheriffAssignHandler: GameActHandler = {
     room: Room,
     player: Player,
     target: index,
-    ctx: Context
+    ctx: Context,
   ) {
     const targetPlayer = room.getPlayerByIndex(target);
     targetPlayer.isSheriff = true;
@@ -64,9 +68,7 @@ export const SheriffAssignHandler: GameActHandler = {
         } as ShowMsg);
       } else {
         io.to(room.roomNumber).emit(Events.SHOW_MSG, {
-          innerHTML: renderHintNPlayers("下一任警长为", [
-            nextSheriff.index,
-          ]),
+          innerHTML: renderHintNPlayers("下一任警长为", [nextSheriff.index]),
         } as ShowMsg);
       }
 

@@ -8,10 +8,7 @@ import { Room } from "../../../models/RoomModel";
  * @param player
  * @return {boolean} 是否合规
  */
-export function validateIdentity(
-  room: Room,
-  player: Player
-): true | string {
+export function validateIdentity(room: Room, player: Player): true | string {
   const gameStatus = room.curStatus;
 
   switch (gameStatus) {
@@ -23,14 +20,12 @@ export function validateIdentity(
       );
     case GameStatus.SHERIFF_ASSIGN:
       return (
-        (player.isSheriff &&
-          room.curDyingPlayer._id === player._id) ||
+        (player.isSheriff && room.curDyingPlayer._id === player._id) ||
         "你不是警长"
       );
     case GameStatus.LEAVE_MSG:
       return (
-        (player.isDying &&
-          room.curDyingPlayer._id === player._id) ||
+        (player.isDying && room.curDyingPlayer._id === player._id) ||
         "你不能发表遗言"
       );
   }
@@ -47,9 +42,7 @@ export function validateIdentity(
     case GameStatus.GUARD_PROTECT:
       return player.character === "GUARD" || "你不是守卫";
     case GameStatus.DAY_DISCUSS:
-      return (
-        room.toFinishPlayers.has(player.index) || "你不能发言"
-      );
+      return room.toFinishPlayers.has(player.index) || "你不能发言";
     case GameStatus.SHERIFF_ELECT:
     case GameStatus.EXILE_VOTE:
     case GameStatus.SHERIFF_VOTE:

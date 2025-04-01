@@ -3,7 +3,12 @@
 import { onMounted, ref, Ref } from "vue";
 
 import { Character } from "../../shared/GameDefs";
-import { GameEvent, index, PlayerDef, PublicPlayerDef } from "../../shared/ModelDefs";
+import {
+  GameEvent,
+  index,
+  PlayerDef,
+  PublicPlayerDef,
+} from "../../shared/ModelDefs";
 
 const ROOM_NUMBER_PREFIX = "WERE_WOLF_ROOM";
 interface RoomRecord extends RoomRecordBrief {
@@ -22,10 +27,7 @@ interface RoomRecordBrief {
   roomNumber: string;
 }
 
-function getKeyByNumberNTime(
-  roomNumber: string,
-  time: number
-): string {
+function getKeyByNumberNTime(roomNumber: string, time: number): string {
   return `${ROOM_NUMBER_PREFIX}-${roomNumber}-${time}`;
 }
 
@@ -34,7 +36,7 @@ export function saveRecord(
   roomNumber: string,
   self: PlayerDef,
   players: PlayerDef[],
-  time: number
+  time: number,
 ) {
   const recordBrief: RoomRecordBrief = {
     roomNumber,
@@ -52,22 +54,18 @@ export function saveRecord(
   };
   localStorage.setItem(
     getKeyByNumberNTime(roomNumber, time),
-    JSON.stringify(record)
+    JSON.stringify(record),
   );
 
-  const prevRoomListStr =
-    localStorage.getItem(ROOM_LIST_KEY) || "[]";
-  const roomList = JSON.parse(
-    prevRoomListStr
-  ) as RoomRecordBrief[];
+  const prevRoomListStr = localStorage.getItem(ROOM_LIST_KEY) || "[]";
+  const roomList = JSON.parse(prevRoomListStr) as RoomRecordBrief[];
   roomList.push(recordBrief);
 
   localStorage.setItem(ROOM_LIST_KEY, JSON.stringify(roomList));
 }
 
 function getAllRecords(): RoomRecordBrief[] {
-  const prevRoomListStr =
-    localStorage.getItem(ROOM_LIST_KEY) || "[]";
+  const prevRoomListStr = localStorage.getItem(ROOM_LIST_KEY) || "[]";
   return JSON.parse(prevRoomListStr) as RoomRecordBrief[];
 }
 
@@ -82,7 +80,7 @@ export function useAllRecords(): Ref<RoomRecordBrief[]> {
 
 function getRecordByNumberNTime(
   roomNumber: string,
-  time: number
+  time: number,
 ): RoomRecord | null {
   const key = getKeyByNumberNTime(roomNumber, time);
 

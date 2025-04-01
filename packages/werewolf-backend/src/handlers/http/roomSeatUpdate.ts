@@ -4,7 +4,10 @@ import { Events } from "@werewolf/shared";
 import { RefreshPlayerMsg } from "@werewolf/shared/WSMsg/RoomJoin";
 import io from "../../index";
 import { Room } from "../../models/RoomModel";
-import { ChangeSeatRequest, ChangeSeatResponse } from "@werewolf/shared/httpMsg/ChangeSeatMsg";
+import {
+  ChangeSeatRequest,
+  ChangeSeatResponse,
+} from "@werewolf/shared/httpMsg/ChangeSeatMsg";
 import { IDHeaderName, RoomNumberHeaderName } from "@werewolf/shared";
 import { createError } from "../../middleware/handleError";
 
@@ -20,8 +23,8 @@ const roomSeatUpdate: Middleware = async (ctx) => {
   if (!room.isSeatAvailable(req.index)) {
     createError({
       status: 500,
-      msg: "该座位已被抢 :)"
-    })
+      msg: "该座位已被抢 :)",
+    });
   }
 
   curPlayer.index = req.index;

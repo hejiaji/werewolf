@@ -4,7 +4,12 @@ import { GameStatus, TIMEOUT } from "@werewolf/shared";
 import { index } from "@werewolf/shared/ModelDefs";
 import { Player } from "../../../models/PlayerModel";
 import { Room } from "../../../models/RoomModel";
-import { GameActHandler, Response, startCurrentState, status2Handler } from "./";
+import {
+  GameActHandler,
+  Response,
+  startCurrentState,
+  status2Handler,
+} from "./";
 
 export const ExileVoteCheckHandler: GameActHandler = {
   curStatus: GameStatus.EXILE_VOTE_CHECK,
@@ -13,7 +18,7 @@ export const ExileVoteCheckHandler: GameActHandler = {
     room: Room,
     player: Player,
     target: index,
-    ctx: Context
+    ctx: Context,
   ) {
     return {
       status: 200,

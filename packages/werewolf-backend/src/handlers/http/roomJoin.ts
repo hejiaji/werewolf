@@ -1,7 +1,8 @@
 import { Middleware } from "koa";
 
 import {
-    JoinRoomRequest, JoinRoomResponse
+  JoinRoomRequest,
+  JoinRoomResponse,
 } from "@werewolf/shared/httpMsg/JoinRoomMsg";
 import { Events } from "@werewolf/shared";
 import { RefreshPlayerMsg } from "@werewolf/shared/WSMsg/RoomJoin";

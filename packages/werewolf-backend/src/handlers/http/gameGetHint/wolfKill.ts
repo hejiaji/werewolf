@@ -1,8 +1,6 @@
 import { Middleware } from "koa";
 
-import {
-    IDHeaderName, RoomNumberHeaderName, index,
-} from "@werewolf/shared";
+import { IDHeaderName, RoomNumberHeaderName, index } from "@werewolf/shared";
 import { createError } from "../../../middleware/handleError";
 import { Room } from "../../../models/RoomModel";
 import { renderHintNPlayers } from "../../../utils/renderHintNPlayers";

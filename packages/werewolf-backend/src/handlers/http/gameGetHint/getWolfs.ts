@@ -1,8 +1,6 @@
 import { Middleware } from "koa";
 
-import {
-    IDHeaderName, RoomNumberHeaderName
-} from "@werewolf/shared";
+import { IDHeaderName, RoomNumberHeaderName } from "@werewolf/shared";
 import { createError } from "../../../middleware/handleError";
 import { Room } from "../../../models/RoomModel";
 import { getVoteResult } from "../../../utils/getVoteResult";
@@ -19,9 +17,7 @@ export const getWolfs: Middleware = async (ctx) => {
     createError({ status: 401, msg: "你的身份无法查看此消息" });
 
   const wolfs = room.players
-    .filter(
-      (p) => p.character === "WEREWOLF" && p._id !== playerID
-    )
+    .filter((p) => p.character === "WEREWOLF" && p._id !== playerID)
     .map((p) => p.index);
 
   const ret = {

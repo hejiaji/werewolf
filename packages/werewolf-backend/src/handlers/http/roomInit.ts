@@ -2,7 +2,8 @@ import { Middleware } from "koa";
 
 import { RoomNumberHeaderName } from "@werewolf/shared";
 import {
-    InitRoomRequest, InitRoomResponse
+  InitRoomRequest,
+  InitRoomResponse,
 } from "@werewolf/shared/httpMsg/InitRoomMsg";
 import { Room } from "../../models/RoomModel";
 

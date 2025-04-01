@@ -14,7 +14,7 @@ const resetAct = () => {
   target.value = 0;
   noTarget.value = false;
   shouldRestart.value = false;
-}
+};
 
 export async function act() {
   if (!!shouldRestart.value) {
@@ -23,10 +23,7 @@ export async function act() {
     return;
   }
 
-  if (
-    potion.value === "POISON" &&
-    gameStatus.value === GameStatus.WITCH_ACT
-  )
+  if (potion.value === "POISON" && gameStatus.value === GameStatus.WITCH_ACT)
     target.value *= -1;
 
   const res = await characterAct({
@@ -40,10 +37,7 @@ export async function act() {
 
   if (res && res.status === 200) {
     if (res.data.isWolf !== undefined) {
-      showDialog(
-        `该玩家为${res.data.isWolf ? "狼人" : "人类"}`,
-        3
-      );
+      showDialog(`该玩家为${res.data.isWolf ? "狼人" : "人类"}`, 3);
     } else {
       showDialog("操作成功!", 3);
     }

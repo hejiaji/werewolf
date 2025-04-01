@@ -18,13 +18,12 @@ export const SheriffVoteHandler: GameActHandler = {
     room: Room,
     player: Player,
     target: index,
-    ctx: Context
+    ctx: Context,
   ) {
     if (!room.getPlayerByIndex(target)?.canBeVoted)
       createError({ status: 400, msg: "选择的玩家未参与竞选" });
 
-    if (player.canBeVoted)
-      createError({ status: 400, msg: "参选者不能投票" });
+    if (player.canBeVoted) createError({ status: 400, msg: "参选者不能投票" });
 
     player.sheriffVotes[0] = target;
 
@@ -63,10 +62,7 @@ export const SheriffVoteHandler: GameActHandler = {
       // 此人当选, 进入白天
       room.getPlayerByIndex(highestVotes[0]).isSheriff = true;
       io.to(room.roomNumber).emit(Events.SHOW_MSG, {
-        innerHTML: renderHintNPlayers(
-          "当选警长的玩家为:",
-          highestVotes
-        ),
+        innerHTML: renderHintNPlayers("当选警长的玩家为:", highestVotes),
       });
       return SheriffVoteCheckHandler.startOfState(room);
     } else {
@@ -86,7 +82,7 @@ export const SheriffVoteHandler: GameActHandler = {
       io.to(room.roomNumber).emit(Events.SHOW_MSG, {
         innerHTML: renderHintNPlayers(
           "竞争警长的玩家如下, 请再次依次进行发言",
-          highestVotes
+          highestVotes,
         ),
       });
       // 设置下一阶段为警长发言

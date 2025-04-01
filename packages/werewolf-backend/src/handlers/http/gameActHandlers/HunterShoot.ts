@@ -18,7 +18,7 @@ export const HunterShootHandler: GameActHandler = {
     room: Room,
     player: Player,
     target: index,
-    ctx: Context
+    ctx: Context,
   ) {
     // console.log("# HunterShoot", { player });
     if (player.die?.fromCharacter === "WITCH") {
@@ -72,7 +72,7 @@ export const HunterShootHandler: GameActHandler = {
     }
 
     const shotByHunter = room.players.find(
-      (p) => p.die?.fromCharacter === "HUNTER"
+      (p) => p.die?.fromCharacter === "HUNTER",
     );
     if (!shotByHunter) {
       // 到点了未选择则不进行操作, 直接进入警长传警徽阶段, 或者无猎人
@@ -83,9 +83,7 @@ export const HunterShootHandler: GameActHandler = {
     } else {
       // 如果死人了, 通知死人了
       io.to(room.roomNumber).emit(Events.SHOW_MSG, {
-        innerHTML: renderHintNPlayers("猎人开枪射杀了", [
-          shotByHunter.index,
-        ]),
+        innerHTML: renderHintNPlayers("猎人开枪射杀了", [shotByHunter.index]),
       } as ShowMsg);
       HunterCheckHandler.startOfState(room);
     }
@@ -100,9 +98,7 @@ function showHunter(room: Room): boolean {
   // console.log("# HunterShoot", { room });
   if (!room.needingCharacters.includes("HUNTER")) return false;
 
-  const hunter = room.players.find(
-    (p) => p.character === "HUNTER"
-  );
+  const hunter = room.players.find((p) => p.character === "HUNTER");
 
   // console.log("# HunterShoot", {
   //   hunter: hunter?.characterStatus?.shootAt,

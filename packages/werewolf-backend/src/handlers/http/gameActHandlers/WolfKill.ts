@@ -6,7 +6,12 @@ import { ShowMsg } from "@werewolf/shared/WSMsg/ShowMsg";
 import { Player } from "../../../models/PlayerModel";
 import { Room } from "../../../models/RoomModel";
 import { getVoteResult } from "../../../utils/getVoteResult";
-import { GameActHandler, Response, startCurrentState, status2Handler } from "./";
+import {
+  GameActHandler,
+  Response,
+  startCurrentState,
+  status2Handler,
+} from "./";
 import { SeerCheckHandler } from "./SeerCheck";
 
 export const WolfKillHandler: GameActHandler = {
@@ -16,7 +21,7 @@ export const WolfKillHandler: GameActHandler = {
     room: Room,
     player: Player,
     target: index,
-    ctx: Context
+    ctx: Context,
   ) {
     // 记录所作的操作
     player.characterStatus.wantToKills =
@@ -43,9 +48,7 @@ export const WolfKillHandler: GameActHandler = {
 
   async endOfState(room: Room) {
     // 准备工作
-    const werewolfs = room.players.filter(
-      (p) => p.character === "WEREWOLF"
-    );
+    const werewolfs = room.players.filter((p) => p.character === "WEREWOLF");
     const today = room.currentDay;
     const votes = werewolfs.map((p) => ({
       from: p.index,
@@ -66,11 +69,10 @@ export const WolfKillHandler: GameActHandler = {
           at: today,
           fromIndex: werewolfs.reduce<index[]>(
             (prev, cur) =>
-              cur.characterStatus?.wantToKills?.[today] ===
-              toKillIndex
+              cur.characterStatus?.wantToKills?.[today] === toKillIndex
                 ? [...prev, cur.index]
                 : prev,
-            [] as index[]
+            [] as index[],
           ),
           fromCharacter: "WEREWOLF",
         };

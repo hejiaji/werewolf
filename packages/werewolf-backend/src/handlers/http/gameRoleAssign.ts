@@ -31,9 +31,7 @@ const gameRoleAssign: Middleware = async (ctx) => {
   const needingCharacters = [...room.needingCharacters];
 
   for (let p of room.players) {
-    const index = Math.floor(
-      Math.random() * needingCharacters.length
-    );
+    const index = Math.floor(Math.random() * needingCharacters.length);
     const character = needingCharacters.splice(index, 1)[0];
 
     p.character = character;

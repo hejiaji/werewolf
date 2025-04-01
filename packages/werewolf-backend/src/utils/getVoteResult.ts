@@ -8,10 +8,7 @@ export function getVoteResult(votes: Vote[]): index[] | null {
   const voteSituation = getVoteSituation(votes);
   /** 所有被投过的人 */
   const allTargets = Object.keys(voteSituation);
-  if (
-    !allTargets ||
-    (allTargets.length === 1 && allTargets[0] === "0")
-  )
+  if (!allTargets || (allTargets.length === 1 && allTargets[0] === "0"))
     return null; // 全员弃票则返回 null
 
   let maxVoteTargets: index[] = [];
@@ -39,9 +36,7 @@ export function getVoteResult(votes: Vote[]): index[] | null {
  * 选择弃票的玩家的*目标*为 0
  * @param votes 所有人投票的结果
  */
-export function getVoteSituation(
-  votes: Vote[]
-): VoteSituationRecord {
+export function getVoteSituation(votes: Vote[]): VoteSituationRecord {
   const voteSituation: VoteSituationRecord = {};
 
   votes.forEach((v) => {

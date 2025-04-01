@@ -28,13 +28,13 @@ function joinRoom(roomNumber: string) {
   });
 
   socket.on(Events.CHANGE_STATUS, changeStatus);
-  socket.on(Events.ROLE_ASSIGN, refreshGameStatus)
+  socket.on(Events.ROLE_ASSIGN, refreshGameStatus);
   socket.on(Events.GAME_BEGIN, gameBegin);
   socket.on(Events.GAME_END, gameEnd);
   socket.on(Events.ROOM_JOIN, refreshPlayersInfo);
   socket.on(Events.SEAT_CHANGE, refreshPlayersInfo);
   socket.on(Events.SHOW_MSG, showWSMsg);
-  socket.on(Events.GAME_RESTART, gameRestart)
+  socket.on(Events.GAME_RESTART, gameRestart);
 
   socket.emit(Events.ROOM_JOIN, roomNumber);
 }

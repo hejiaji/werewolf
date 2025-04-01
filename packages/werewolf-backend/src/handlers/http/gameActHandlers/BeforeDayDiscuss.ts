@@ -16,7 +16,7 @@ export const BeforeDayDiscussHandler: GameActHandler = {
     room: Room,
     player: Player,
     target: index,
-    ctx: Context
+    ctx: Context,
   ) {
     // TODO 真正设置 isAlive 字段
     return {
@@ -61,7 +61,7 @@ export const BeforeDayDiscussHandler: GameActHandler = {
         io.to(room.roomNumber).emit(Events.SHOW_MSG, {
           innerHTML: renderHintNPlayers(
             "以下为昨晚死亡的玩家, 请发表遗言",
-            dyingPlayers.map((p) => p.index)
+            dyingPlayers.map((p) => p.index),
           ),
           showTime: TIMEOUT[GameStatus.BEFORE_DAY_DISCUSS],
         } as ShowMsg);
@@ -72,7 +72,7 @@ export const BeforeDayDiscussHandler: GameActHandler = {
         io.to(room.roomNumber).emit(Events.SHOW_MSG, {
           innerHTML: renderHintNPlayers(
             "以下为昨晚死亡的玩家, 不能发表遗言",
-            dyingPlayers.map((p) => p.index)
+            dyingPlayers.map((p) => p.index),
           ),
           showTime: TIMEOUT[GameStatus.BEFORE_DAY_DISCUSS],
         } as ShowMsg);
@@ -93,9 +93,7 @@ export const BeforeDayDiscussHandler: GameActHandler = {
       // 如果没死人就进入白天讨论阶段
       room.players.forEach((p) => (p.canBeVoted = p.isAlive));
       room.toFinishPlayers = new Set(
-        room.players
-          .filter((p) => p.canBeVoted)
-          .map((p) => p.index)
+        room.players.filter((p) => p.canBeVoted).map((p) => p.index),
       );
       // console.log(
       //   "# BeforeDayDiscuss",

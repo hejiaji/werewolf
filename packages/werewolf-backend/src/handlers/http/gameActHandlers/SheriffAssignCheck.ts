@@ -5,7 +5,12 @@ import { GameStatus, TIMEOUT, index } from "@werewolf/shared";
 import { Player } from "../../../models/PlayerModel";
 import { Room } from "../../../models/RoomModel";
 import { getVoteResult } from "../../../utils/getVoteResult";
-import { GameActHandler, gotoNextStateAfterHandleDie, Response, startCurrentState } from "./";
+import {
+  GameActHandler,
+  gotoNextStateAfterHandleDie,
+  Response,
+  startCurrentState,
+} from "./";
 
 export const SheriffAssignCheckHandler: GameActHandler = {
   curStatus: GameStatus.SHERIFF_ASSIGN_CHECK,
@@ -14,7 +19,7 @@ export const SheriffAssignCheckHandler: GameActHandler = {
     room: Room,
     player: Player,
     target: index,
-    ctx: Context
+    ctx: Context,
   ) {
     return {
       status: 200,

@@ -1,8 +1,6 @@
 import { Middleware } from "koa";
 
-import {
-    IDHeaderName, RoomNumberHeaderName
-} from "@werewolf/shared";
+import { IDHeaderName, RoomNumberHeaderName } from "@werewolf/shared";
 import { createError } from "../../../middleware/handleError";
 import { Room } from "../../../models/RoomModel";
 import { renderHintNPlayers } from "../../../utils/renderHintNPlayers";
@@ -23,9 +21,7 @@ export const witchGetDie: Middleware = async (ctx) => {
     });
 
   const killedByWolfToday = room.players.find(
-    (p) =>
-      p.die?.fromCharacter === "WEREWOLF" &&
-      p.die?.at === room.currentDay
+    (p) => p.die?.fromCharacter === "WEREWOLF" && p.die?.at === room.currentDay,
   );
 
   const ret = {
@@ -36,9 +32,7 @@ export const witchGetDie: Middleware = async (ctx) => {
   if (!killedByWolfToday) {
     ret.data = "今晚无人被杀害";
   } else {
-    ret.data = renderHintNPlayers("今晚被杀害的是:", [
-      killedByWolfToday.index,
-    ]);
+    ret.data = renderHintNPlayers("今晚被杀害的是:", [killedByWolfToday.index]);
   }
   ctx.body = ret;
 };

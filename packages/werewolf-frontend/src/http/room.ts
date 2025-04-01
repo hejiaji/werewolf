@@ -1,11 +1,23 @@
-import { CreateRoomRequest, CreateRoomResponse } from "../../shared/httpMsg/CreateRoomMsg";
-import { InitRoomRequest, InitRoomResponse } from "../../shared/httpMsg/InitRoomMsg";
-import { JoinRoomRequest, JoinRoomResponse } from "../../shared/httpMsg/JoinRoomMsg";
+import {
+  CreateRoomRequest,
+  CreateRoomResponse,
+} from "../../shared/httpMsg/CreateRoomMsg";
+import {
+  InitRoomRequest,
+  InitRoomResponse,
+} from "../../shared/httpMsg/InitRoomMsg";
+import {
+  JoinRoomRequest,
+  JoinRoomResponse,
+} from "../../shared/httpMsg/JoinRoomMsg";
 import request from "./_request";
-import { ChangeSeatRequest, ChangeSeatResponse } from "../../shared/httpMsg/ChangeSeatMsg";
+import {
+  ChangeSeatRequest,
+  ChangeSeatResponse,
+} from "../../shared/httpMsg/ChangeSeatMsg";
 
 export async function createRoom(
-  data: CreateRoomRequest
+  data: CreateRoomRequest,
 ): Promise<CreateRoomResponse> {
   const res = (await request({
     url: "/room/create",
@@ -17,7 +29,7 @@ export async function createRoom(
 }
 
 export async function joinRoom(
-  data: JoinRoomRequest
+  data: JoinRoomRequest,
 ): Promise<JoinRoomResponse | null> {
   const res = (await request({
     url: "/room/join",
@@ -29,7 +41,7 @@ export async function joinRoom(
 }
 
 export async function initRoom(
-  data: InitRoomRequest
+  data: InitRoomRequest,
 ): Promise<InitRoomResponse | null> {
   const res = (await request({
     url: "/room/init",
@@ -41,7 +53,7 @@ export async function initRoom(
 }
 
 export async function changeSeat(
-  data: ChangeSeatRequest
+  data: ChangeSeatRequest,
 ): Promise<ChangeSeatResponse | null> {
   const res = (await request({
     url: "/room/seat",

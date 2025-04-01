@@ -40,7 +40,7 @@ export interface GameActHandler {
     room: Room,
     player: Player,
     target: index,
-    ctx: Context
+    ctx: Context,
   ) => Promise<Response>;
   /**
    * 链式调用\
@@ -148,7 +148,7 @@ export function gotoNextStateAfterHandleDie(room: Room) {
     // 同时设置能被投票的人为活着的
     if (room.nextStateOfDieCheck === GameStatus.DAY_DISCUSS) {
       room.toFinishPlayers = new Set(
-        room.players.filter((p) => p.isAlive).map((p) => p.index)
+        room.players.filter((p) => p.isAlive).map((p) => p.index),
       );
       room.players.forEach((p) => (p.canBeVoted = p.isAlive));
     }

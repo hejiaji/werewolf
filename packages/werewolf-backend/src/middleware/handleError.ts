@@ -41,6 +41,6 @@ export function createError({
     JSON.stringify({
       status,
       msg,
-    })
+    }),
   );
 }

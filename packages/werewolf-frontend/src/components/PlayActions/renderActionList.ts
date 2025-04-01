@@ -1,4 +1,4 @@
-import { h, } from "vue";
+import { h } from "vue";
 
 import { GameStatus } from "../../../shared/GameDefs";
 import { gameStatus, self } from "../../reactivity/game";
@@ -12,7 +12,7 @@ const actionInfoList: {
   disabled: () => boolean;
   noTarget?: boolean;
   onClick?: Function;
-  hideActionButton? : boolean;
+  hideActionButton?: boolean;
 }[] = [
   // {
   //   content: "票选狼人",
@@ -32,7 +32,9 @@ const actionInfoList: {
   // },
   {
     content: "昨夜信息",
-    isShown: () => self.value.isCreator === true && gameStatus.value === GameStatus.SHERIFF_ELECT,
+    isShown: () =>
+      self.value.isCreator === true &&
+      gameStatus.value === GameStatus.SHERIFF_ELECT,
     disabled: () => false,
     hideActionButton: true,
     onClick: () => getFirstNightResult(),
@@ -91,8 +93,10 @@ const actionInfoList: {
     isShown: () => self.value.isCreator === true,
     disabled: () => false,
     noTarget: true,
-    onClick: () => { shouldRestart.value = true }
-  }
+    onClick: () => {
+      shouldRestart.value = true;
+    },
+  },
   // {
   //   content: "结束发言",
   //   isShown: () => true,

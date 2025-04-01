@@ -19,7 +19,7 @@ export function checkGameOver(room: Room): boolean {
       }
       return prev;
     },
-    { werewolf: 0, villager: 0 }
+    { werewolf: 0, villager: 0 },
   );
 
   // console.log("# checkGameOver", { werewolf, villager }); // TODO

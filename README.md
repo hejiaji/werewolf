@@ -1,39 +1,27 @@
 <div align="center" id="top">
-  <img width="100" src="werewolf-frontend/public/wolf.png" alt="Werewolf Logo" />
+  <img width="100" src="packages/werewolf-frontend/public/wolf.png" alt="Werewolf Logo" />
 
   <!-- <a href="https://werewolf.netlify.app">Demo</a> -->
 </div>
 
-<h1 align="center">狼人杀小法官</h1>
-
+<h1 align="center">狼人杀大法官</h1>
 <br>
 
-## 简介
+## Description
 
-只支持首夜法官功能，当第一位玩家死亡后，由它在继续担任上帝
+Designed to replace the werewolf judge for the first night. The player that died after the first round then take over the judge role.
 
 
 ## Usage
 
-###
-
-Requirements: git and node
-
 ```bash
+$ yarn install
 
-# Access backend
-$ cd werewolf/werewolf-backend
-# Install dependencies
-$ npm i
-# Run the project
-$ npm run dev
+# Start backend
+$ yarn dev:backend
 
-# Access frontend
-$ cd ../werewolf-frontend
-# Install dependencies
-$ npm i
-# Run the project
-$ npm run dev
+# Start frontend
+$ yarn run frontend
 ```
 
 ##  License

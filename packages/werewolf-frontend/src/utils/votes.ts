@@ -5,9 +5,7 @@ import { index } from "../../shared/ModelDefs";
  * 选择弃票的玩家的*目标*为 0
  * @param votes 所有人投票的结果
  */
-export function getVoteSituation(
-  votes: Vote[]
-): VoteSituationRecord {
+export function getVoteSituation(votes: Vote[]): VoteSituationRecord {
   const voteSituation: VoteSituationRecord = {};
 
   votes.forEach((v) => {

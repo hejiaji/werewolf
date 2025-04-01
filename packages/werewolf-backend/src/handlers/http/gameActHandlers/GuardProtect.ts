@@ -15,10 +15,9 @@ export const GuardProtectHandler: GameActHandler = {
     room: Room,
     player: Player,
     target: index,
-    ctx: Context
+    ctx: Context,
   ) {
-    player.characterStatus.protects =
-      player.characterStatus.protects || [];
+    player.characterStatus.protects = player.characterStatus.protects || [];
 
     const protects = player.characterStatus.protects;
     if (protects[room.currentDay - 2] === target && target) {
@@ -38,7 +37,7 @@ export const GuardProtectHandler: GameActHandler = {
         // 如果确实是今天被杀了
 
         const witchStatus = room.players.find(
-          (p) => p.character === "WITCH"
+          (p) => p.character === "WITCH",
         )?.characterStatus;
         if (
           witchStatus?.MEDICINE?.usedAt === target &&

@@ -32,9 +32,12 @@ const gameAct: Middleware = async (ctx) => {
   console.log("# gameAct", { gameStatus });
 
   // strategy pattern
-  ctx.body = await status2Handler[
-    gameStatus
-  ]?.handleHttpInTheState?.(room, player, req.target, ctx);
+  ctx.body = await status2Handler[gameStatus]?.handleHttpInTheState?.(
+    room,
+    player,
+    req.target,
+    ctx,
+  );
 };
 
 export default gameAct;

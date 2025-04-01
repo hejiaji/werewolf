@@ -81,11 +81,7 @@ interface PotionStatus {
 export type WitchStatus = Record<Potion, PotionStatus>;
 
 export type CharacterStatus = Partial<
-  HunterStatus &
-    GuardStatus &
-    SeerStatus &
-    WerewolfStatus &
-    WitchStatus
+  HunterStatus & GuardStatus & SeerStatus & WerewolfStatus & WitchStatus
 >;
 
 export interface CharacterEvent {

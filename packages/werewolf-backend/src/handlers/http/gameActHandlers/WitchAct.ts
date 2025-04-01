@@ -16,11 +16,10 @@ export const WitchActHandler: GameActHandler = {
     room: Room,
     player: Player,
     target: index,
-    ctx: Context
+    ctx: Context,
   ) {
     if (
-      player.characterStatus?.MEDICINE?.usedDay ===
-        room.currentDay ||
+      player.characterStatus?.MEDICINE?.usedDay === room.currentDay ||
       player.characterStatus?.POISON?.usedDay === room.currentDay
     ) {
       createError({
@@ -49,9 +48,7 @@ export const WitchActHandler: GameActHandler = {
         savedPlayer.die?.at === room.currentDay
       ) {
         // 女巫只能救今天被狼人杀的人
-        if (
-          savedPlayer._id === player._id
-        )
+        if (savedPlayer._id === player._id)
           // 女巫只有第一夜才能自救
           createError({
             msg: "女巫不能自救",

@@ -3,9 +3,7 @@ import router from "../router";
 import { roomNumber } from "../reactivity/joinRoom";
 
 export default function gameRestart() {
-  showDialog(
-    `<b>重回大厅</b>`, 5
-  );
+  showDialog(`<b>重回大厅</b>`, 5);
 
   setTimeout(() => {
     router.replace({

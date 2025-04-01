@@ -16,7 +16,7 @@ export const LeaveMsgHandler: GameActHandler = {
     room: Room,
     player: Player,
     target: index,
-    ctx: Context
+    ctx: Context,
   ) {
     // 结束发言
     LeaveMsgHandler.endOfState(room);

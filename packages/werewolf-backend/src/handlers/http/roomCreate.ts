@@ -1,7 +1,8 @@
 import { Middleware } from "koa";
 
 import {
-    CreateRoomRequest, CreateRoomResponse
+  CreateRoomRequest,
+  CreateRoomResponse,
 } from "@werewolf/shared/httpMsg/CreateRoomMsg";
 import { Player } from "../../models/PlayerModel";
 import { Room } from "../../models/RoomModel";

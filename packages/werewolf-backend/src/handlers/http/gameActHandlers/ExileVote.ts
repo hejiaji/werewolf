@@ -18,7 +18,7 @@ export const ExileVoteHandler: GameActHandler = {
     room: Room,
     player: Player,
     target: index,
-    ctx: Context
+    ctx: Context,
   ) {
     if (!room.getPlayerByIndex(target).canBeVoted)
       createError({
@@ -54,28 +54,19 @@ export const ExileVoteHandler: GameActHandler = {
       io.to(room.roomNumber).emit(Events.SHOW_MSG, {
         innerHTML: "所有人都弃票, 即将进入夜晚",
       });
-      return ExileVoteCheckHandler.startOfState(
-        room,
-        GameStatus.WOLF_KILL
-      );
+      return ExileVoteCheckHandler.startOfState(room, GameStatus.WOLF_KILL);
     } else if (highestVotes.length === 1) {
       // 如果有票数最高的人
       // 此人被处死, 进入死亡结算
       room.getPlayerByIndex(highestVotes[0]).isDying = true;
       io.to(room.roomNumber).emit(Events.SHOW_MSG, {
-        innerHTML: renderHintNPlayers(
-          "被处死的玩家为:",
-          highestVotes
-        ),
+        innerHTML: renderHintNPlayers("被处死的玩家为:", highestVotes),
       });
       room.curDyingPlayer = room.getPlayerByIndex(highestVotes[0]);
 
       room.curDyingPlayer.isDying = true;
       room.curDyingPlayer.isAlive = false;
-      return ExileVoteCheckHandler.startOfState(
-        room,
-        GameStatus.LEAVE_MSG
-      );
+      return ExileVoteCheckHandler.startOfState(room, GameStatus.LEAVE_MSG);
     } else {
       // 如果多人平票
 
@@ -87,41 +78,31 @@ export const ExileVoteHandler: GameActHandler = {
           // 虽然有平票, 但是警长选择的人在此之中, 则此人死亡
           room.getPlayerByIndex(highestVotes[0]).isDying = true;
           io.to(room.roomNumber).emit(Events.SHOW_MSG, {
-            innerHTML: renderHintNPlayers("被处死的玩家为:", [
-              sheriffChoice,
-            ]),
+            innerHTML: renderHintNPlayers("被处死的玩家为:", [sheriffChoice]),
           });
-          room.curDyingPlayer = room.getPlayerByIndex(
-            highestVotes[0]
-          );
+          room.curDyingPlayer = room.getPlayerByIndex(highestVotes[0]);
           room.curDyingPlayer.isDying = true;
           room.curDyingPlayer.isAlive = false;
-          return ExileVoteCheckHandler.startOfState(
-            room,
-            GameStatus.LEAVE_MSG
-          );
+          return ExileVoteCheckHandler.startOfState(room, GameStatus.LEAVE_MSG);
         }
       }
       // 若最高票中无警长的影响
       // 设置参与投票的人是他们几个
       // 设置他们未结束发言
       room.players.forEach(
-        (p) => (p.canBeVoted = highestVotes.includes(p.index))
+        (p) => (p.canBeVoted = highestVotes.includes(p.index)),
       );
       // 告知所有人现在应该再依次投票
       io.to(room.roomNumber).emit(Events.SHOW_MSG, {
         innerHTML: renderHintNPlayers(
           "平票的玩家如下, 请再次依次进行发言",
-          highestVotes
+          highestVotes,
         ),
       });
       room.toFinishPlayers = new Set(highestVotes);
 
       // 设置下一阶段为自由发言
-      return ExileVoteCheckHandler.startOfState(
-        room,
-        GameStatus.DAY_DISCUSS
-      );
+      return ExileVoteCheckHandler.startOfState(room, GameStatus.DAY_DISCUSS);
     }
   },
 };

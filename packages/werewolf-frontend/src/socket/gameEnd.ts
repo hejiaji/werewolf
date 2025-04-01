@@ -24,13 +24,13 @@ export default async function gameEnd(msg: GameEndMsg) {
     roomNumber.value,
     self.value,
     players.value as PlayerDef[],
-    time
+    time,
   );
 
   showDialog(
     `<b>游戏结束</b> </br> 获胜者为${
       msg.winner === "WEREWOLF" ? "狼人" : "村民"
-    }`
+    }`,
   );
 
   router.replace({

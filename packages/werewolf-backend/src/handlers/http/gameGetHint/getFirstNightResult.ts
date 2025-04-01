@@ -1,11 +1,8 @@
 import { Middleware } from "koa";
 
-import {
-  IDHeaderName, RoomNumberHeaderName
-} from "@werewolf/shared";
+import { IDHeaderName, RoomNumberHeaderName } from "@werewolf/shared";
 import { createError } from "../../../middleware/handleError";
 import { Room } from "../../../models/RoomModel";
-
 
 export const getFirstNightResult: Middleware = async (ctx) => {
   const roomNumber = ctx.get(RoomNumberHeaderName);
@@ -19,8 +16,7 @@ export const getFirstNightResult: Middleware = async (ctx) => {
 
   const dyingPlayers = room.players.filter((p) => {
     // 女巫救活了就没有 p.die?.fromCharacter 字段
-    const isKilledLastNight =
-      p.die?.at === room.currentDay && !p.die?.saved;
+    const isKilledLastNight = p.die?.at === room.currentDay && !p.die?.saved;
     return isKilledLastNight;
   });
 
@@ -33,7 +29,7 @@ export const getFirstNightResult: Middleware = async (ctx) => {
   if (dyingPlayers.length === 0) {
     ret.data = "昨晚是个平安夜";
   } else {
-    const dyingNumbers = dyingPlayers.map(x => `${x.index}号`).join(",");
+    const dyingNumbers = dyingPlayers.map((x) => `${x.index}号`).join(",");
     ret.data = `昨晚死亡的是: ${dyingNumbers}`;
   }
 

@@ -6,10 +6,7 @@ import { index } from "@werewolf/shared/ModelDefs";
  * @param players
  * @return 渲染后的 html 片段
  */
-export function renderHintNPlayers(
-  hint: string,
-  players?: index[]
-): string {
+export function renderHintNPlayers(hint: string, players?: index[]): string {
   let playerHTML = "";
   if (players) {
     players.forEach(
@@ -18,7 +15,7 @@ export function renderHintNPlayers(
         <div class="die-player">
           <div class="player-index">${index}</div>号
         </div>
-        `)
+        `),
     );
   }
   const innerHTML = `

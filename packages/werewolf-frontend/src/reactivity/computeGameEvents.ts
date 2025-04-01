@@ -1,8 +1,14 @@
 import { computed } from "vue";
 
 import {
-    CharacterEvent, GameEvent, GuardStatus, HunterStatus, PlayerDef, SeerStatus, WerewolfStatus,
-    WitchStatus
+  CharacterEvent,
+  GameEvent,
+  GuardStatus,
+  HunterStatus,
+  PlayerDef,
+  SeerStatus,
+  WerewolfStatus,
+  WitchStatus,
 } from "../../shared/ModelDefs";
 import { getVoteSituation, Vote } from "../utils/votes";
 import { date, players, self } from "./game";
@@ -51,41 +57,34 @@ export const gameEvents = computed(() => {
     character: "SHERIFF",
     deed: "",
   };
-  Object.entries(getVoteSituation(sheriffVotes)).map(
-    ([target, voters]) => {
-      const votersStr = voters.join("，");
-      if (target === "0") {
-        sheriffVoteEvent.deed += `警长投票中, ${votersStr} 弃票\n`;
-      } else {
-        sheriffVoteEvent.deed += `警长投票中, ${votersStr} 投给了 ${target}\n`;
-      }
+  Object.entries(getVoteSituation(sheriffVotes)).map(([target, voters]) => {
+    const votersStr = voters.join("，");
+    if (target === "0") {
+      sheriffVoteEvent.deed += `警长投票中, ${votersStr} 弃票\n`;
+    } else {
+      sheriffVoteEvent.deed += `警长投票中, ${votersStr} 投给了 ${target}\n`;
     }
-  );
-  if (sheriffVoteEvent.deed.length)
-    _gameEvents.push(sheriffVoteEvent);
+  });
+  if (sheriffVoteEvent.deed.length) _gameEvents.push(sheriffVoteEvent);
 
   // 处理白天投票结果
-  const exileVoteEvents = exileVotes.map<GameEvent>(
-    (votes, at) => {
-      const exileVoteEvent: GameEvent = {
-        at,
-        character: "VILLAGER",
-        deed: "",
-      };
-      Object.entries(getVoteSituation(votes)).map(
-        ([target, voters]) => {
-          const votersStr = voters.join("，");
-          if (target === "0") {
-            exileVoteEvent.deed += `放逐投票中, ${votersStr} 弃票\n`;
-          } else {
-            exileVoteEvent.deed += `放逐投票中, ${votersStr} 投给了 ${target}\n`;
-          }
-        }
-      );
+  const exileVoteEvents = exileVotes.map<GameEvent>((votes, at) => {
+    const exileVoteEvent: GameEvent = {
+      at,
+      character: "VILLAGER",
+      deed: "",
+    };
+    Object.entries(getVoteSituation(votes)).map(([target, voters]) => {
+      const votersStr = voters.join("，");
+      if (target === "0") {
+        exileVoteEvent.deed += `放逐投票中, ${votersStr} 弃票\n`;
+      } else {
+        exileVoteEvent.deed += `放逐投票中, ${votersStr} 投给了 ${target}\n`;
+      }
+    });
 
-      return exileVoteEvent;
-    }
-  );
+    return exileVoteEvent;
+  });
   _gameEvents = _gameEvents.concat(exileVoteEvents);
 
   // 1. 游戏中, 渲染自己的角色行动
@@ -104,7 +103,7 @@ export const gameEvents = computed(() => {
 
 function mergeEvents(
   gameEvents: GameEvent[],
-  characterEvents: CharacterEvent[]
+  characterEvents: CharacterEvent[],
 ): GameEvent[] {
   return characterEvents
     .reduce<GameEvent[]>(
@@ -118,9 +117,9 @@ function mergeEvents(
               deed: eValue.deed,
             },
           ],
-          outPrev
+          outPrev,
         ),
-      []
+      [],
     )
     .concat(gameEvents)
     .sort((e1, e2) => e1.at - e2.at);
@@ -149,24 +148,19 @@ function getEvents(player: PlayerDef): CharacterEvent {
   };
   switch (character) {
     case "GUARD":
-      (characterStatus as GuardStatus).protects.forEach(
-        (index, at) => {
-          if (at % 2 === 0)
-            ret.events.push({
-              at,
-              deed:
-                index === undefined || index === null
-                  ? `${index} 号空守`
-                  : `${index} 号保护了 ${index} 号玩家`,
-            });
-        }
-      );
+      (characterStatus as GuardStatus).protects.forEach((index, at) => {
+        if (at % 2 === 0)
+          ret.events.push({
+            at,
+            deed:
+              index === undefined || index === null
+                ? `${index} 号空守`
+                : `${index} 号保护了 ${index} 号玩家`,
+          });
+      });
       break;
     case "HUNTER":
-      const {
-        player,
-        day,
-      } = (characterStatus as HunterStatus).shootAt;
+      const { player, day } = (characterStatus as HunterStatus).shootAt;
       if (day !== -1)
         ret.events.push({
           at: day,
@@ -177,36 +171,30 @@ function getEvents(player: PlayerDef): CharacterEvent {
         });
       break;
     case "SEER":
-      (characterStatus as SeerStatus).checks.forEach(
-        (check, at) => {
-          if (at % 2 === 0)
-            ret.events.push({
-              at,
-              deed:
-                check === undefined || check === null
-                  ? `${index} 号没有查人`
-                  : `${index} 号查验了 ${
-                      check.index
-                    } 号玩家，他是${
-                      check.isWerewolf ? "狼人" : "良民"
-                    }`,
-            });
-        }
-      );
+      (characterStatus as SeerStatus).checks.forEach((check, at) => {
+        if (at % 2 === 0)
+          ret.events.push({
+            at,
+            deed:
+              check === undefined || check === null
+                ? `${index} 号没有查人`
+                : `${index} 号查验了 ${check.index} 号玩家，他是${
+                    check.isWerewolf ? "狼人" : "良民"
+                  }`,
+          });
+      });
       break;
     case "WEREWOLF":
-      (characterStatus as WerewolfStatus).wantToKills.forEach(
-        (kill, at) => {
-          if (at % 2 === 0)
-            ret.events.push({
-              at,
-              deed:
-                kill === undefined || kill === null
-                  ? `${index} 号放弃选择`
-                  : `${index} 号投票想杀 ${kill} 号玩家`,
-            });
-        }
-      );
+      (characterStatus as WerewolfStatus).wantToKills.forEach((kill, at) => {
+        if (at % 2 === 0)
+          ret.events.push({
+            at,
+            deed:
+              kill === undefined || kill === null
+                ? `${index} 号放弃选择`
+                : `${index} 号投票想杀 ${kill} 号玩家`,
+          });
+      });
       break;
     case "WITCH":
       const { MEDICINE, POISON } = characterStatus as WitchStatus;

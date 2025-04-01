@@ -7,7 +7,7 @@ export enum AUDIO_CATEGORY {
   SEER = "seer",
   WIZARD = "wizard",
   WOLF = "wolf",
-  BG = "bg"
+  BG = "bg",
 }
 
 export const AUDIO_LIST: AUDIO_CATEGORY[] = [
@@ -16,7 +16,7 @@ export const AUDIO_LIST: AUDIO_CATEGORY[] = [
   AUDIO_CATEGORY.GUARD,
   AUDIO_CATEGORY.SEER,
   AUDIO_CATEGORY.WIZARD,
-  AUDIO_CATEGORY.WOLF
+  AUDIO_CATEGORY.WOLF,
 ];
 
 export const backGroundAudio = ref<HTMLAudioElement | null>(null);
@@ -35,7 +35,7 @@ const audio_map = {
   [AUDIO_CATEGORY.WIZARD]: wizardAudio,
   [AUDIO_CATEGORY.WOLF]: wolfAudio,
   [AUDIO_CATEGORY.BG]: backGroundAudio,
-}
+};
 
 export const loadAudio = () => {
   if (!backGroundAudio.value) {
@@ -43,9 +43,11 @@ export const loadAudio = () => {
     backGroundAudio.value.load(); // Preload the audio file
   }
 
-  for(let i = 0; i < AUDIO_LIST.length; i++) {
+  for (let i = 0; i < AUDIO_LIST.length; i++) {
     const audioCategory = AUDIO_LIST[i];
-    const audioElement = audio_map[audioCategory] as Ref<HTMLAudioElement | null>;
+    const audioElement = audio_map[
+      audioCategory
+    ] as Ref<HTMLAudioElement | null>;
     if (!audioElement.value) {
       audioElement.value = new Audio(`/audios/${audioCategory}.mp3`);
       audioElement.value.load();
@@ -54,16 +56,17 @@ export const loadAudio = () => {
 };
 
 const onAudioEndingEnded = () => {
-  for(let i = 0; i < AUDIO_LIST.length; i++) {
+  for (let i = 0; i < AUDIO_LIST.length; i++) {
     const audioCategory = AUDIO_LIST[i];
-    const audioElement = audio_map[audioCategory] as Ref<HTMLAudioElement | null>;
+    const audioElement = audio_map[
+      audioCategory
+    ] as Ref<HTMLAudioElement | null>;
     if (audioElement.value) {
       audioElement.value.pause();
       audioElement.value.currentTime = 0;
     }
   }
-}
-
+};
 
 export const playAudio = (category: AUDIO_CATEGORY) => {
   const audioElement = audio_map[category] as Ref<HTMLAudioElement | null>;
@@ -75,11 +78,11 @@ export const playAudio = (category: AUDIO_CATEGORY) => {
       audioElement.value.volume = 1;
 
       if (category === AUDIO_CATEGORY.ENDING) {
-        audioElement.value.addEventListener('ended', onAudioEndingEnded)
+        audioElement.value.addEventListener("ended", onAudioEndingEnded);
       }
       setTimeout(() => {
         audioElement.value && audioElement.value.play();
-      }, 4000)
+      }, 4000);
     }
   }
 };

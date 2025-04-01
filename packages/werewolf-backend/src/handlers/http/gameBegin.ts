@@ -1,7 +1,12 @@
 import { Middleware } from "koa";
 
 import io from "../../";
-import { IDHeaderName, RoomNumberHeaderName, GameStatus, Events } from "@werewolf/shared";
+import {
+  IDHeaderName,
+  RoomNumberHeaderName,
+  GameStatus,
+  Events,
+} from "@werewolf/shared";
 import { HttpRes } from "@werewolf/shared/httpMsg/_httpResTemplate";
 import { createError } from "../../middleware/handleError";
 import { Player } from "../../models/PlayerModel";
@@ -30,7 +35,7 @@ const gameBegin: Middleware = async (ctx) => {
       status: 401,
     });
 
-  if (room.players.find(x => x.character === undefined)) {
+  if (room.players.find((x) => x.character === undefined)) {
     createError({
       msg: "玩家还未分配角色",
       status: 401,

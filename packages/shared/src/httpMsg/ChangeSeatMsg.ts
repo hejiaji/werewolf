@@ -7,7 +7,7 @@ export interface ChangeSeatRequest {
 }
 
 export type ChangeSeatResponse = HttpRes<{
-  ID: ID,
-  index: index,
-  needingCharacters: Character[],
-}>
+  ID: ID;
+  index: index;
+  needingCharacters: Character[];
+}>;

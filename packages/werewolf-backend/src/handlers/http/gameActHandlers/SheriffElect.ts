@@ -17,7 +17,7 @@ export const SheriffElectHandler: GameActHandler = {
     room: Room,
     player: Player,
     target: index,
-    ctx: Context
+    ctx: Context,
   ) {
     // 加入参与竞选的人
     player.canBeVoted = true;
@@ -35,9 +35,7 @@ export const SheriffElectHandler: GameActHandler = {
   },
 
   async endOfState(room: Room) {
-    const electingPlayers = room.players.filter(
-      (p) => p.canBeVoted
-    );
+    const electingPlayers = room.players.filter((p) => p.canBeVoted);
 
     if (!electingPlayers || electingPlayers.length === 0) {
       // 无人竞选就直接到天亮
@@ -46,23 +44,20 @@ export const SheriffElectHandler: GameActHandler = {
       // 只有一人竞选就把警长给他
       electingPlayers[0].isSheriff = true;
       io.to(room.roomNumber).emit(Events.SHOW_MSG, {
-        innerHTML: renderHintNPlayers(
-          "仅有此玩家参选, 直接成为警长",
-          [electingPlayers[0].index]
-        ),
+        innerHTML: renderHintNPlayers("仅有此玩家参选, 直接成为警长", [
+          electingPlayers[0].index,
+        ]),
       });
       // TODO 连续让前端显示文字, 后一次会覆盖前一次, 需要前端修改弹窗逻辑
       return BeforeDayDiscussHandler.startOfState(room);
     } else {
       // 有多人参选
       // 设置参选警长的人都未结束发言
-      room.toFinishPlayers = new Set(
-        electingPlayers.map((p) => p.index)
-      );
+      room.toFinishPlayers = new Set(electingPlayers.map((p) => p.index));
       io.to(room.roomNumber).emit(Events.SHOW_MSG, {
         innerHTML: renderHintNPlayers(
           "参选警长的玩家如下, 请依次进行发言",
-          electingPlayers.map((p) => p.index)
+          electingPlayers.map((p) => p.index),
         ),
       });
       return SheriffSpeachHandler.startOfState(room);

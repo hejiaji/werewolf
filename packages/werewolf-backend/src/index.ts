@@ -34,8 +34,8 @@ app
   .use(
     cors({
       credentials: false,
-      origin: "*"
-    })
+      origin: "*",
+    }),
   )
 
   .use(useHandleError())

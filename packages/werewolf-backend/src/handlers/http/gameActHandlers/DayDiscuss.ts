@@ -13,7 +13,7 @@ export const DayDiscussHandler: GameActHandler = {
     room: Room,
     player: Player,
     target: index,
-    ctx: Context
+    ctx: Context,
   ) {
     room.toFinishPlayers.delete(player.index);
 

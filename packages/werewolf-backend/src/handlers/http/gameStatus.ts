@@ -24,9 +24,7 @@ const gameStatus: Middleware = async (ctx, next) => {
       self: { ...curPlayer, isCreator: curPlayer._id === room.creatorID },
       curDay: room.currentDay,
       gameStatus: room.curStatus,
-      players: room.isFinished
-        ? room.players
-        : room.choosePublicInfo(),
+      players: room.isFinished ? room.players : room.choosePublicInfo(),
     },
   };
   ctx.body = ret;

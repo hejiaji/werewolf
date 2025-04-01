@@ -6,7 +6,12 @@ import { SeerCheckData } from "@werewolf/shared/httpMsg/SeerCheckMsg";
 import { createError } from "../../../middleware/handleError";
 import { Player } from "../../../models/PlayerModel";
 import { Room } from "../../../models/RoomModel";
-import { GameActHandler, Response, startCurrentState, status2Handler } from "./";
+import {
+  GameActHandler,
+  Response,
+  startCurrentState,
+  status2Handler,
+} from "./";
 import { WitchActHandler } from "./WitchAct";
 
 export const SeerCheckHandler: GameActHandler = {
@@ -16,19 +21,17 @@ export const SeerCheckHandler: GameActHandler = {
     room: Room,
     player: Player,
     target: index,
-    ctx: Context
+    ctx: Context,
   ) {
     const targetPlayer = room.getPlayerByIndex(target);
 
-    if (!targetPlayer)
-      createError({ status: 400, msg: "未找到此玩家" });
+    if (!targetPlayer) createError({ status: 400, msg: "未找到此玩家" });
     if (player.characterStatus?.checks?.[room.currentDay])
       createError({ status: 400, msg: "一天只能查验一次" });
 
     const isWolf = targetPlayer.character === "WEREWOLF";
 
-    player.characterStatus.checks =
-      player.characterStatus.checks || [];
+    player.characterStatus.checks = player.characterStatus.checks || [];
     player.characterStatus.checks[room.currentDay] = {
       index: target,
       isWerewolf: isWolf,

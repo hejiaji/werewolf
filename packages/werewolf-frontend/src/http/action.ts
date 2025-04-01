@@ -4,7 +4,7 @@ import { SeerCheckData } from "../../shared/httpMsg/SeerCheckMsg";
 import request from "./_request";
 
 export async function characterAct(
-  data: CharacterAct
+  data: CharacterAct,
 ): Promise<HttpRes<Partial<SeerCheckData>>> {
   const res = await request({
     url: "/game/act",

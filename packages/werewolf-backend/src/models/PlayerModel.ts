@@ -1,6 +1,11 @@
 import { Character } from "@werewolf/shared/GameDefs";
 import {
-    CharacterStatus, day, ID, index, PlayerDef, PublicPlayerDef
+  CharacterStatus,
+  day,
+  ID,
+  index,
+  PlayerDef,
+  PublicPlayerDef,
 } from "@werewolf/shared/ModelDefs";
 import { Room } from "./RoomModel";
 
@@ -25,12 +30,11 @@ export class Player implements PlayerDef {
   name: string;
   _id: ID;
 
-  constructor({ name, index }: { name: string; index?: number; }) {
+  constructor({ name, index }: { name: string; index?: number }) {
     this.name = name;
     this.index = index;
 
-    this._id =
-      Math.random().toString(36).substring(2) + "." + Date.now(); // e.g. `5fs6yt6htlu.1621430145541`
+    this._id = Math.random().toString(36).substring(2) + "." + Date.now(); // e.g. `5fs6yt6htlu.1621430145541`
   }
   isDying: boolean = false; // TODO isDying 的话角色闪烁?
   canBeVoted: boolean = false;

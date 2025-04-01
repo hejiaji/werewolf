@@ -13,7 +13,9 @@
 * {
   color: var(--on-bg);
   background-color: var(--bg);
-  transition: color 0.2s, background-color 0.2s;
+  transition:
+    color 0.2s,
+    background-color 0.2s;
   user-select: none;
 }
 

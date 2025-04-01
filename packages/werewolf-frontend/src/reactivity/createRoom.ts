@@ -12,9 +12,7 @@ import { needingCharacters, players } from "./game";
 /**
  * 游戏人数配置(reactive)
  */
-export const characters = reactive<
-  Record<SetableCharacters, number>
->({
+export const characters = reactive<Record<SetableCharacters, number>>({
   GUARD: 0,
   HUNTER: 0,
   SEER: 1,
@@ -32,7 +30,7 @@ export const characters = reactive<
  */
 export function setCharacter(
   character: SetableCharacters,
-  type: 1 | -1
+  type: 1 | -1,
 ): boolean {
   if (characters[character] + type < 0) return false;
   if (["SEER", "HUNTER", "GUARD", "WITCH"].includes(character)) {
@@ -54,7 +52,7 @@ export async function create() {
   Object.keys(characters).map((_name) => {
     const name = _name as SetableCharacters;
     characterNames = characterNames.concat(
-      new Array(characters[name]).fill(name)
+      new Array(characters[name]).fill(name),
     );
   });
   needingCharacters.value = characterNames;
