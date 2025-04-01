@@ -1,8 +1,6 @@
-/**
- * @type {import('vite').UserConfig}
- */
-const config = {
-  // base: "/werewolf/game",
-};
+import vue from "@vitejs/plugin-vue";
+import { defineConfig } from "vite";
 
-export default config;
+export default defineConfig({
+  plugins: [vue()],
+});
