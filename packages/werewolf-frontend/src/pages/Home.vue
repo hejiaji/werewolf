@@ -29,7 +29,7 @@ export default Home;
 <style lang="scss" scoped>
 @font-face {
   font-family: gete;
-  src: url("./assets/gete.ttf");
+  src: url("./gete.ttf");
 }
 
 .main-page {
