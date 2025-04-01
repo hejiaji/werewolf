@@ -2,9 +2,11 @@
   "name": "@werewolf/frontend",
   "version": "0.0.1",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "IS_LOCAL=true && vite",
+    "build": "LOCAL=true && vite build",
+    "preview": "LOCAL=true && vite preview",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -25,6 +27,7 @@
     "@vue/compiler-sfc": "^3.0.4",
     "eslint": "^7.22.0",
     "eslint-plugin-vue": "^7.7.0",
+    "gh-pages": "^6.3.0",
     "sass": "^1.32.8",
     "sass-loader": "^11.0.1",
     "vite": "6.2.4"

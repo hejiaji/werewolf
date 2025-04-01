@@ -39,7 +39,7 @@ const audio_map = {
 
 export const loadAudio = () => {
   if (!backGroundAudio.value) {
-    backGroundAudio.value = new Audio("/audios/bg.mp3");
+    backGroundAudio.value = new Audio("./audios/bg.mp3");
     backGroundAudio.value.load(); // Preload the audio file
   }
 
@@ -49,7 +49,7 @@ export const loadAudio = () => {
       audioCategory
     ] as Ref<HTMLAudioElement | null>;
     if (!audioElement.value) {
-      audioElement.value = new Audio(`/audios/${audioCategory}.mp3`);
+      audioElement.value = new Audio(`./audios/${audioCategory}.mp3`);
       audioElement.value.load();
     }
   }
