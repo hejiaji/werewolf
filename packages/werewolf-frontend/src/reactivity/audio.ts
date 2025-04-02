@@ -72,11 +72,8 @@ export const playAudio = (category: AUDIO_CATEGORY) => {
   const audioElement = audio_map[category] as Ref<HTMLAudioElement | null>;
   if (audioElement.value) {
     if (category === AUDIO_CATEGORY.BG) {
-      audioElement.value.volume = 0.1;
       audioElement.value.play();
     } else {
-      audioElement.value.volume = 1;
-
       if (category === AUDIO_CATEGORY.ENDING) {
         audioElement.value.addEventListener("ended", onAudioEndingEnded);
       }
