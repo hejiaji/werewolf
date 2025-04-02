@@ -26,7 +26,7 @@
         :disabled="isActing"
         @click="showActions = true"
         :class="{ active: canAct }"
-        content="显示操作"
+        content="技能操作"
       ></Btn>
       <!--      <Btn-->
       <!--        :disabled="isActing"-->
