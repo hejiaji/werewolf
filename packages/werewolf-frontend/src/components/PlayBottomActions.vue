@@ -56,7 +56,7 @@ $height: 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2vh 10%;
+  padding: 2dvh 10%;
   max-width: 30rem;
   margin: auto;
   img {

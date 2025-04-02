@@ -36,12 +36,13 @@ export default Home;
   .logo {
     padding-top: 10vh;
     width: 18vh;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     display: block;
   }
 
   .title {
-    margin: 7vh;
+    margin: 7vh auto 0;
     text-align: center;
     font-size: 3rem;
     font-weight: bolder;
@@ -50,7 +51,7 @@ export default Home;
 
   .btn {
     display: block;
-    margin: 5vh auto;
+    margin: 7vh auto 0;
     text-align: center;
   }
 }

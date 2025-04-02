@@ -44,7 +44,7 @@ export default Events;
   .use-border {
     overflow-y: scroll;
     overflow-x: hidden;
-    max-height: 80vh;
+    max-height: 80dvh;
   }
 
   .title {
