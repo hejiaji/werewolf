@@ -1,20 +1,20 @@
+import request from "./_request";
 import {
   CreateRoomRequest,
   CreateRoomResponse,
-} from "../../shared/httpMsg/CreateRoomMsg";
-import {
-  InitRoomRequest,
-  InitRoomResponse,
-} from "../../shared/httpMsg/InitRoomMsg";
+} from "@werewolf/shared/src/httpMsg/CreateRoomMsg";
 import {
   JoinRoomRequest,
   JoinRoomResponse,
-} from "../../shared/httpMsg/JoinRoomMsg";
-import request from "./_request";
+} from "@werewolf/shared/src/httpMsg/JoinRoomMsg";
+import {
+  InitRoomRequest,
+  InitRoomResponse,
+} from "@werewolf/shared/src/httpMsg/InitRoomMsg";
 import {
   ChangeSeatRequest,
   ChangeSeatResponse,
-} from "../../shared/httpMsg/ChangeSeatMsg";
+} from "@werewolf/shared/src/httpMsg/ChangeSeatMsg";
 
 export async function createRoom(
   data: CreateRoomRequest,

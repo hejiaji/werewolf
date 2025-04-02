@@ -1,10 +1,10 @@
 import { h } from "vue";
 
-import { GameStatus } from "../../../shared/GameDefs";
 import { gameStatus, self } from "../../reactivity/game";
 import { potion, shouldRestart } from "../../reactivity/playAction";
 import ActionBtn from "./ActionBtn.vue";
 import { getFirstNightResult, witchGetDieNShow } from "../../http/gameGetHint";
+import { GameStatus } from "@werewolf/shared";
 
 const actionInfoList: {
   content: string;

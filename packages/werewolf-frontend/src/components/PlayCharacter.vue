@@ -9,53 +9,52 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, computed } from "vue";
+import { defineComponent, computed } from "vue";
 
-  import { character, self } from "../reactivity/game";
-  import { showCharacter } from "../reactivity/playPage";
-  import { ChineseNames, CharacterIntro } from "../../shared/GameDefs";
+import { character, self } from "../reactivity/game";
+import { showCharacter } from "../reactivity/playPage";
 
-  import UseMenu from "./UseMenu.vue";
-  import Avatar from "./Avatar.vue";
+import UseMenu from "./UseMenu.vue";
+import Avatar from "./Avatar.vue";
+import { CharacterIntro, ChineseNames } from "@werewolf/shared";
 
-  const PlayCharacter = defineComponent({
-    name: "PlayCharacter",
-    components: {
-      UseMenu,
-      Avatar,
-    },
-    setup(props) {
-      const name = computed(() => ChineseNames[character.value]);
-      const intro = computed(() => CharacterIntro[character.value]);
+const PlayCharacter = defineComponent({
+  name: "PlayCharacter",
+  components: {
+    UseMenu,
+    Avatar,
+  },
+  setup(props) {
+    const name = computed(() => ChineseNames[character.value]);
+    const intro = computed(() => CharacterIntro[character.value]);
 
-      return {
-        character,
-        name,
-        intro,
-        showCharacter,
-      };
-    },
-  });
+    return {
+      character,
+      name,
+      intro,
+      showCharacter,
+    };
+  },
+});
 
-  export default PlayCharacter;
+export default PlayCharacter;
 </script>
 
-
 <style lang="scss" scoped>
-  .use-menu {
-    text-align: center;
-    .avatar {
-      width: 40%;
-    }
-    .character {
-      font-size: 1.2rem;
-      margin: 1rem;
-      .character-name {
-        font-weight: bold;
-      }
-    }
-    .intro {
-      text-align: left;
+.use-menu {
+  text-align: center;
+  .avatar {
+    width: 40%;
+  }
+  .character {
+    font-size: 1.2rem;
+    margin: 1rem;
+    .character-name {
+      font-weight: bold;
     }
   }
+  .intro {
+    text-align: left;
+  }
+}
 </style>

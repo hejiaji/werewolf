@@ -1,8 +1,6 @@
 <template>
   <div class="review-detail">
-    <h2 class="title">
-      对局记录
-    </h2>
+    <h2 class="title">对局记录</h2>
     <div class="review" v-if="record">
       <div class="room-number info">
         <span class="key">房间: </span>
@@ -44,9 +42,7 @@
       ></PlayEventList>
     </div>
 
-    <div v-else class="placeholder">
-      未找到对局记录
-    </div>
+    <div v-else class="placeholder">未找到对局记录</div>
 
     <Btn
       :onClick="() => $router.push({ name: 'home' })"
@@ -56,57 +52,57 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from "vue";
-  import { ChineseNames } from "../../shared/GameDefs";
-  import Btn from "../components/Btn.vue";
-  import PlayEventList from "../components/PlayEventList.vue";
+import { defineComponent } from "vue";
+import Btn from "../components/Btn.vue";
+import PlayEventList from "../components/PlayEventList.vue";
 
-  import { useRecord } from "../reactivity/record";
+import { useRecord } from "../reactivity/record";
+import { ChineseNames } from "@werewolf/shared";
 
-  const ReviewDetail = defineComponent({
-    name: "ReviewDetail",
-    components: { PlayEventList, Btn },
-    props: {
-      roomNumber: { type: String, required: true },
-      time: { type: Number, required: true },
-    },
-    setup(props) {
-      const record = useRecord(props.roomNumber, props.time);
-      return { record, ChineseNames };
-    },
-  });
+const ReviewDetail = defineComponent({
+  name: "ReviewDetail",
+  components: { PlayEventList, Btn },
+  props: {
+    roomNumber: { type: String, required: true },
+    time: { type: Number, required: true },
+  },
+  setup(props) {
+    const record = useRecord(props.roomNumber, props.time);
+    return { record, ChineseNames };
+  },
+});
 
-  export default ReviewDetail;
+export default ReviewDetail;
 </script>
 
 <style lang="scss" scoped>
-  .review-detail {
-    padding: 1rem;
-    .info {
-      .key {
-        font-weight: bold;
-      }
-    }
-
-    .room-number,
-    .time {
-      margin: 0.5rem 0;
-      font-size: 1.2rem;
-    }
-    .player-info {
-      margin: 0.7rem 0;
-    }
-
-    .btn {
-      margin: 2rem auto;
-      display: block;
-      text-align: center;
-    }
-
-    .placeholder {
-      margin: 2rem 0 4rem;
-      opacity: 0.5;
-      text-align: center;
+.review-detail {
+  padding: 1rem;
+  .info {
+    .key {
+      font-weight: bold;
     }
   }
+
+  .room-number,
+  .time {
+    margin: 0.5rem 0;
+    font-size: 1.2rem;
+  }
+  .player-info {
+    margin: 0.7rem 0;
+  }
+
+  .btn {
+    margin: 2rem auto;
+    display: block;
+    text-align: center;
+  }
+
+  .placeholder {
+    margin: 2rem 0 4rem;
+    opacity: 0.5;
+    text-align: center;
+  }
+}
 </style>

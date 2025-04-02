@@ -1,11 +1,10 @@
 import { ref } from "vue";
 
-import { GameStatus, Potion } from "../../shared/GameDefs";
-import { index } from "../../shared/ModelDefs";
 import { characterAct } from "../http/action";
 import { showDialog } from "./dialog";
 import { gameStatus } from "./game";
 import { gameRestart } from "../http/room";
+import { GameStatus, index, Potion } from "@werewolf/shared";
 
 const resetAct = () => {
   /* reset */

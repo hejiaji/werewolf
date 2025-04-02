@@ -2,13 +2,7 @@
 
 import { onMounted, ref, Ref } from "vue";
 
-import { Character } from "../../shared/GameDefs";
-import {
-  GameEvent,
-  index,
-  PlayerDef,
-  PublicPlayerDef,
-} from "../../shared/ModelDefs";
+import { Character, GameEvent, index, PlayerDef } from "@werewolf/shared";
 
 const ROOM_NUMBER_PREFIX = "WERE_WOLF_ROOM";
 interface RoomRecord extends RoomRecordBrief {

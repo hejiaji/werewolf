@@ -1,4 +1,4 @@
-import { index } from "../../shared/ModelDefs";
+import { index } from "@werewolf/shared";
 
 /**
  * 返回票型, key 投票的*目标*, value 为投给这个玩家的人

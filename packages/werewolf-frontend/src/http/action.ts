@@ -1,7 +1,7 @@
-import { HttpRes } from "../../shared/httpMsg/_httpResTemplate";
-import CharacterAct from "../../shared/httpMsg/CharacterAct";
-import { SeerCheckData } from "../../shared/httpMsg/SeerCheckMsg";
 import request from "./_request";
+import CharacterAct from "@werewolf/shared/src/httpMsg/CharacterAct";
+import { HttpRes } from "@werewolf/shared/src/httpMsg/_httpResTemplate";
+import { SeerCheckData } from "@werewolf/shared/src/httpMsg/SeerCheckMsg";
 
 export async function characterAct(
   data: CharacterAct,

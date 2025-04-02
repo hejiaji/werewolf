@@ -43,13 +43,13 @@
 
 <script lang="ts">
 import { defineComponent, computed, PropType } from "vue";
-import { PublicPlayerDef } from "../../shared/ModelDefs";
 
 import { changeSeat } from "../http/room";
 
 import { setTarget, isActing, target } from "../reactivity/playAction";
 
 import { theme } from "../reactivity/theme";
+import { PublicPlayerDef } from "@werewolf/shared";
 
 const RoomPlayerList = defineComponent({
   name: "RoomPlayerList",

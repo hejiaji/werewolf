@@ -1,8 +1,8 @@
+import request from "./_request";
 import {
   GameStatusRequest,
   GameStatusResponse,
-} from "../../shared/httpMsg/GameStatusMsg";
-import request from "./_request";
+} from "@werewolf/shared/src/httpMsg/GameStatusMsg";
 
 export async function getGameStatus(
   data: GameStatusRequest,

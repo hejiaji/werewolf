@@ -1,4 +1,4 @@
-import { TokenDef } from "../../shared/ModelDefs";
+import { TokenDef } from "@werewolf/shared";
 
 const KEY = "_werewolf_token_";
 

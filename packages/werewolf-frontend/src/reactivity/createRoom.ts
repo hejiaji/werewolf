@@ -1,13 +1,13 @@
 import sha256 from "sha256";
 import { reactive, ref } from "vue";
 
-import { SetableCharacters } from "../../shared/GameDefs";
 import { createRoom } from "../http/room";
 import router from "../router";
 import { joinRoom } from "../socket";
 import { setToken } from "../utils/token";
 import { showDialog } from "./dialog";
 import { needingCharacters, players } from "./game";
+import { SetableCharacters } from "@werewolf/shared";
 
 /**
  * 游戏人数配置(reactive)

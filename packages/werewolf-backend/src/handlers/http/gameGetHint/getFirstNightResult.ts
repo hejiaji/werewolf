@@ -16,7 +16,8 @@ export const getFirstNightResult: Middleware = async (ctx) => {
 
   const dyingPlayers = room.players.filter((p) => {
     // 女巫救活了就没有 p.die?.fromCharacter 字段
-    const isKilledLastNight = p.die?.at === room.currentDay && !p.die?.saved;
+    const isKilledLastNight =
+      p.die?.at === room.currentDay - 1 && !p.die?.saved;
     return isKilledLastNight;
   });
 

@@ -1,5 +1,7 @@
 import { computed } from "vue";
 
+import { getVoteSituation, Vote } from "../utils/votes";
+import { date, players, self } from "./game";
 import {
   CharacterEvent,
   GameEvent,
@@ -9,9 +11,7 @@ import {
   SeerStatus,
   WerewolfStatus,
   WitchStatus,
-} from "../../shared/ModelDefs";
-import { getVoteSituation, Vote } from "../utils/votes";
-import { date, players, self } from "./game";
+} from "@werewolf/shared";
 
 export const gameEvents = computed(() => {
   let _gameEvents: GameEvent[] = [];

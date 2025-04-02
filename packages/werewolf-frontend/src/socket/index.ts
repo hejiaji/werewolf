@@ -1,8 +1,5 @@
 import io from "socket.io-client";
 
-// const io = require("socket.io-client");
-import { SERVER_DOMAIN, WS_PATH } from "../../shared/constants";
-import { Events } from "../../shared/WSEvents";
 // handlers
 import changeStatus from "./changeStatus";
 import gameBegin from "./gameBegin";
@@ -11,6 +8,7 @@ import gameEnd from "./gameEnd";
 import refreshPlayersInfo from "./refreshPlayersInfo";
 import showWSMsg from "./showWSMsg";
 import refreshGameStatus from "./refresh";
+import { SERVER_DOMAIN, WS_PATH, Events } from "@werewolf/shared";
 
 let socket: SocketIOClient.Socket;
 

@@ -1,5 +1,3 @@
-import { GameStatus, TIMEOUT } from "../../shared/GameDefs";
-import { ChangeStatusMsg } from "../../shared/WSMsg/ChangeStatus";
 import {
   date,
   gameStatus,
@@ -8,6 +6,8 @@ import {
   self,
 } from "../reactivity/game";
 import { AUDIO_CATEGORY, playAudio, stopBGAudio } from "../reactivity/audio";
+import { GameStatus, TIMEOUT } from "@werewolf/shared";
+import { ChangeStatusMsg } from "@werewolf/shared/src/WSMsg/ChangeStatus";
 
 /*  */
 

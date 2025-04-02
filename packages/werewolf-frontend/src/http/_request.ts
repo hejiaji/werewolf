@@ -1,13 +1,13 @@
 import axios, { AxiosRequestConfig } from "axios";
 
+import { showDialog } from "../reactivity/dialog";
+import { getToken } from "../utils/token";
 import {
   IDHeaderName,
   RoomNumberHeaderName,
   SERVER_BASE_URL,
-} from "../../shared/constants";
-import { HttpRes } from "../../shared/httpMsg/_httpResTemplate";
-import { showDialog } from "../reactivity/dialog";
-import { getToken } from "../utils/token";
+} from "@werewolf/shared";
+import { HttpRes } from "@werewolf/shared/src/httpMsg/_httpResTemplate";
 
 export default function request<T = {}>(config: AxiosRequestConfig) {
   const instance = axios.create({

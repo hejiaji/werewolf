@@ -1,5 +1,3 @@
-import { PlayerDef } from "../../shared/ModelDefs";
-import { GameEndMsg } from "../../shared/WSMsg/GameEnd";
 import { groupedGameEvents } from "../reactivity/computeGameEvents";
 import { showDialog } from "../reactivity/dialog";
 import { players, refresh, self } from "../reactivity/game";
@@ -7,6 +5,8 @@ import { roomNumber } from "../reactivity/joinRoom";
 import { saveRecord } from "../reactivity/record";
 import router from "../router";
 import { socket } from "./";
+import { GameEndMsg } from "@werewolf/shared/src/WSMsg/GameEnd";
+import { PlayerDef } from "@werewolf/shared";
 
 export default async function gameEnd(msg: GameEndMsg) {
   socket.removeAllListeners();

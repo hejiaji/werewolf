@@ -1,5 +1,5 @@
 <template>
-  <div class="avatar">
+  <div class="avatar" v-if="character">
     <img
       class="icon"
       :src="`./assets/${character.toLowerCase()}${theme}.svg`"
@@ -11,9 +11,9 @@
 
 <script lang="ts">
 import { computed, defineComponent } from "vue";
-import { ChineseNames, SetableCharacters } from "../../shared/GameDefs";
 
 import { theme } from "../reactivity/theme";
+import { ChineseNames, SetableCharacters } from "@werewolf/shared";
 
 const Avatar = defineComponent({
   name: "Avatar",

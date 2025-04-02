@@ -1,14 +1,14 @@
 import { computed, ref, Ref, watchEffect } from "vue";
 
-import { Character, GameStatus, TIMEOUT } from "../../shared/GameDefs";
+import { getGameStatus } from "../http/gameStatus";
 import {
-  CharacterStatus,
+  Character,
   day,
-  GameEvent,
+  GameStatus,
   PlayerDef,
   PublicPlayerDef,
-} from "../../shared/ModelDefs";
-import { getGameStatus } from "../http/gameStatus";
+  TIMEOUT,
+} from "@werewolf/shared";
 
 /** 玩家的公开信息 */
 export const players: Ref<PublicPlayerDef[]> = ref([]);

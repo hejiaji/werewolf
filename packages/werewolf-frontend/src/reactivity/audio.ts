@@ -72,7 +72,7 @@ export const playAudio = (category: AUDIO_CATEGORY) => {
   const audioElement = audio_map[category] as Ref<HTMLAudioElement | null>;
   if (audioElement.value) {
     if (category === AUDIO_CATEGORY.BG) {
-      audioElement.value.volume = 0.2;
+      audioElement.value.volume = 0.1;
       audioElement.value.play();
     } else {
       audioElement.value.volume = 1;
@@ -88,8 +88,10 @@ export const playAudio = (category: AUDIO_CATEGORY) => {
 };
 
 export const stopBGAudio = () => {
-  if (backGroundAudio.value) {
-    backGroundAudio.value.pause();
-    backGroundAudio.value.currentTime = 0;
-  }
+  setTimeout(() => {
+    if (backGroundAudio.value) {
+      backGroundAudio.value.pause();
+      backGroundAudio.value.currentTime = 0;
+    }
+  }, 3000);
 };
