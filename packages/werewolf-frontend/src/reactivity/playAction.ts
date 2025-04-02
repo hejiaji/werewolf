@@ -13,6 +13,7 @@ const resetAct = () => {
   target.value = 0;
   noTarget.value = false;
   shouldRestart.value = false;
+  lastNightResult.value = "";
 };
 
 export async function act() {
@@ -50,6 +51,7 @@ export const noTarget = ref(false);
 export const target = ref<index>(0);
 export const potion = ref<Potion>();
 export const shouldRestart = ref(false);
+export const lastNightResult = ref("");
 
 export function setTarget(index: index) {
   if (!isActing.value) return;

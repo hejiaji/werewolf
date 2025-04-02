@@ -8,6 +8,7 @@ import {
 import { AUDIO_CATEGORY, playAudio, stopBGAudio } from "../reactivity/audio";
 import { GameStatus, TIMEOUT } from "@werewolf/shared";
 import { ChangeStatusMsg } from "@werewolf/shared/src/WSMsg/ChangeStatus";
+import { getFirstNightResult } from "../http/gameGetHint";
 
 /*  */
 
@@ -38,5 +39,6 @@ export default async function changeStatus(msg: ChangeStatusMsg) {
     playAudio(AUDIO_CATEGORY.HUNTER);
   } else if (msg.setStatus === GameStatus.SHERIFF_ELECT) {
     playAudio(AUDIO_CATEGORY.ENDING);
+    await getFirstNightResult(false);
   }
 }

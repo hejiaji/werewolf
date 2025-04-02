@@ -1,5 +1,6 @@
 import { showDialog } from "../reactivity/dialog";
 import request from "./_request";
+import { lastNightResult } from "../reactivity/playAction";
 
 /**
  * 获得狼人队友并显示弹窗
@@ -35,15 +36,21 @@ export async function witchGetDieNShow(): Promise<boolean> {
   return true;
 }
 
-export async function getFirstNightResult(): Promise<boolean> {
-  const res = await request<string>({
-    url: "/game/hint/getFirstNightResult",
-    method: "GET",
-  });
+export async function getFirstNightResult(shouldShow = true): Promise<boolean> {
+  if (!lastNightResult.value) {
+    const res = await request<string>({
+      url: "/game/hint/getFirstNightResult",
+      method: "GET",
+    });
 
-  if (!res || res.status !== 200) return false;
+    if (!res || res.status !== 200) return false;
 
-  showDialog(res.data, 10);
+    lastNightResult.value = res.data;
+  }
+
+  if (shouldShow) {
+    showDialog(lastNightResult.value, 10);
+  }
 
   return true;
 }

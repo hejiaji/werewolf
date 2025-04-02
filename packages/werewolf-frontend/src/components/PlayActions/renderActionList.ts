@@ -69,6 +69,12 @@ const actionInfoList: {
     onClick: () => (potion.value = "MEDICINE"),
   },
   {
+    content: "不用药",
+    isShown: () => self.value.character === "WITCH",
+    disabled: () => gameStatus.value !== GameStatus.WITCH_ACT,
+    noTarget: true,
+  },
+  {
     content: "守护一名玩家",
     isShown: () => self.value.character === "GUARD",
     disabled: () => gameStatus.value !== GameStatus.GUARD_PROTECT,
