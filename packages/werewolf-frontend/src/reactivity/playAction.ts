@@ -23,8 +23,19 @@ export async function act() {
     return;
   }
 
-  if (potion.value === "POISON" && gameStatus.value === GameStatus.WITCH_ACT)
-    target.value *= -1;
+  if (gameStatus.value === GameStatus.WITCH_ACT) {
+    if (!potion.value) {
+      target.value = 0;
+    } else {
+      if (target.value === -1) {
+        showDialog("请选择目标", 3);
+        return;
+      }
+      if (potion.value === "POISON") {
+        target.value *= -1;
+      }
+    }
+  }
 
   const res = await characterAct({
     target: target.value,

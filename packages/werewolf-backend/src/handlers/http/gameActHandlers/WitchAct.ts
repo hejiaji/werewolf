@@ -28,7 +28,6 @@ export const WitchActHandler: GameActHandler = {
       });
     }
 
-    // 正编号代表救人, 负编号代表杀人
     if (target < 0) {
       // 杀人
       room.getPlayerByIndex(-target).die = {
@@ -40,33 +39,34 @@ export const WitchActHandler: GameActHandler = {
         usedAt: -target,
         usedDay: room.currentDay,
       };
-    } else {
-      // 救人
-      const savedPlayer = room.getPlayerByIndex(target);
-      if (
-        savedPlayer.die?.fromCharacter === "WEREWOLF" &&
-        savedPlayer.die?.at === room.currentDay
-      ) {
-        // 女巫只能救今天被狼人杀的人
-        if (savedPlayer._id === player._id)
-          // 女巫只有第一夜才能自救
+    } else if (target > 0) {
+      {
+        // 救人
+        const savedPlayer = room.getPlayerByIndex(target);
+        if (
+          savedPlayer.die?.fromCharacter === "WEREWOLF" &&
+          savedPlayer.die?.at === room.currentDay
+        ) {
+          // 女巫只能救今天被狼人杀的人
+          if (savedPlayer._id === player._id)
+            createError({
+              msg: "女巫不能自救",
+              status: 401,
+            });
+
+          // 设置成功救人
+          savedPlayer.die.saved = true;
+          savedPlayer.isAlive = true;
+          player.characterStatus.MEDICINE = {
+            usedAt: target,
+            usedDay: room.currentDay,
+          };
+        } else
           createError({
-            msg: "女巫不能自救",
+            msg: "女巫只能救今天被狼人杀的人",
             status: 401,
           });
-
-        // 设置成功救人
-        savedPlayer.die.saved = true;
-        savedPlayer.isAlive = true;
-        player.characterStatus.MEDICINE = {
-          usedAt: target,
-          usedDay: room.currentDay,
-        };
-      } else
-        createError({
-          msg: "女巫只能救今天被狼人杀的人",
-          status: 401,
-        });
+      }
     }
 
     WitchActHandler.endOfState(room);

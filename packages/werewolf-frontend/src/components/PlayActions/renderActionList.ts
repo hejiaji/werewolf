@@ -72,6 +72,7 @@ const actionInfoList: {
     content: "不用药",
     isShown: () => self.value.character === "WITCH",
     disabled: () => gameStatus.value !== GameStatus.WITCH_ACT,
+    onClick: () => (potion.value = undefined),
     noTarget: true,
   },
   {
