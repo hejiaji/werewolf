@@ -11,6 +11,8 @@
 
 Designed to replace the werewolf judge for the first night. The player that died after the first round then take over the judge role.
 
+Note: It might take a few mins to run normally when you click "create room" as the backend server is currently a free instance and has cold start time after inactivity.
+
 
 ## Usage
 
