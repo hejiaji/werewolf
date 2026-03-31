@@ -1,6 +1,5 @@
-export const SERVER_DOMAIN =
-  // "http://localhost:3011";
-  "https://werewolf-pw60.onrender.com";
+export const SERVER_DOMAIN = "http://localhost:3011";
+// "https://werewolf-pw60.onrender.com";
 
 export const SERVER_BASE_URL = SERVER_DOMAIN;
 
